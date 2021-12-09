@@ -144,19 +144,21 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 
-      <!-- Vendor CSS Files -->
-    <link href="{{asset('bootstrap/assets/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
-    <link href="{{asset('bootstrap/assets/vendor/icofont/icofont.min.css')}}" rel="stylesheet">
-    <link href="{{asset('bootstrap/assets/vendor/boxicons/css/boxicons.min.css')}}" rel="stylesheet">
-    <link href="{{asset('bootstrap/assets/vendor/owl.carousel/assets/owl.carousel.min.css')}}" rel="stylesheet">
-    <link href="{{asset('bootstrap/assets/vendor/venobox/venobox.css')}}" rel="stylesheet">
-    <link href="{{asset('bootstrap/assets/vendor/aos/aos.css')}}" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="{{ asset('bootstrap/assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('bootstrap/assets/vendor/icofont/icofont.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('bootstrap/assets/vendor/boxicons/css/boxicons.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('bootstrap/assets/vendor/owl.carousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('bootstrap/assets/vendor/venobox/venobox.css') }}" rel="stylesheet">
+    <link href="{{ asset('bootstrap/assets/vendor/aos/aos.css') }}" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <!-- Template Main CSS File -->
-    <link href="{{asset('bootstrap/assets/css/style.css')}}" rel="stylesheet">
+    <link href="{{ asset('bootstrap/assets/css/style.css') }}" rel="stylesheet">
 
     {{-- Waves Css [tailwind] --}}
-    <link rel="stylesheet" href="{{asset('css/waves.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/waves.css') }}">
 </head>
 
 <body>
@@ -173,18 +175,112 @@
                     <li class="active"><a href="">Home</a></li>
                     <li class="drop-down"><a href="">Layanan</a>
                         <ul>
-                            <li><a href="#">Drop Down 1</a></li>
-                            <li><a href="#">Drop Down 2</a></li>
-                            <li><a href="#">Drop Down 3</a></li>
-                            <li><a href="#">Drop Down 4</a></li>
+                            <li>
+                                <a href="">
+                                    <div class="d-flex align-items-center">
+                                        <div class="p-2 rounded-lg mr-3" style="background-color: #F8F8F8">
+                                            <span class="material-icons" style="font-size: 2.5rem; color: #78F294">
+                                                event
+                                            </span>
+                                        </div>
+                                        <div class="">
+                                            <div class="">
+                                                <b style="font-size: 1.2rem">Jadwal Sholat</b>
+                                            </div>
+                                            <div>Jadwal sholat kota di Indonesia</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="">
+                                    <div class="d-flex align-items-center">
+                                        <div class="p-2 rounded-lg mr-3" style="background-color: #F8F8F8">
+                                            <span class="material-icons" style="font-size: 2.5rem; color: #FF8A87">
+                                                calculate
+                                            </span>
+                                        </div>
+                                        <div class="">
+                                            <div class="">
+                                                <b style="font-size: 1.2rem">Kalkulator Zakat</b>
+                                            </div>
+                                            <div>Zakat penghasilan, maal & fitrah</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <div class="d-flex align-items-center">
+                                        <div class="p-2 rounded-lg mr-3" style="background-color: #F8F8F8">
+                                            <span class="material-icons" style="font-size: 2.5rem; color: #F9CA0E">
+                                                fact_check
+                                            </span>
+                                        </div>
+                                        <div class="">
+                                            <div class="">
+                                                <b style="font-size: 1.2rem">Halal Checker</b>
+                                            </div>
+                                            <div>Cek Makanan Halal MUI</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <div class="d-flex align-items-center">
+                                        <div class="p-2 rounded-lg mr-3" style="background-color: #F8F8F8">
+                                            <span class="material-icons" style="font-size: 2.5rem; color: #1381F7">
+                                                menu_book
+                                            </span>
+                                        </div>
+                                        <div class="">
+                                            <div class="">
+                                                <b style="font-size: 1.2rem">Qur'an Tafsir</b>
+                                            </div>
+                                            <div>Qur'an 30 Juz & Tafsirnya</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
                         </ul>
                     </li>
                     <li class="drop-down"><a href="">Community</a>
                         <ul>
-                            <li><a href="#">Drop Down 1</a></li>
-                            <li><a href="#">Drop Down 2</a></li>
-                            <li><a href="#">Drop Down 3</a></li>
-                            <li><a href="#">Drop Down 4</a></li>
+                            <li>
+                                <a href="#">
+                                    <div class="d-flex align-items-center">
+                                        <div class="p-2 rounded-lg mr-3" style="background-color: #F8F8F8">
+                                            <span class="material-icons" style="font-size: 2.5rem; color: #78F294">
+                                                forum
+                                            </span>
+                                        </div>
+                                        <div class="">
+                                            <div class="">
+                                                <b style="font-size: 1.2rem">Forum Diskusi</b>
+                                            </div>
+                                            <div>Berbagi cerita dan tanya jawab islami</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <div class="d-flex align-items-center">
+                                        <div class="p-2 rounded-lg mr-3" style="background-color: #F8F8F8">
+                                            <span class="material-icons" style="font-size: 2.5rem; color: #1381F7">
+                                                person_search
+                                            </span>
+                                        </div>
+                                        <div class="">
+                                            <div class="">
+                                                <b style="font-size: 1.2rem">List Ustadz/zah</b>
+                                            </div>
+                                            <div>Kenali lebih dekat dengan para ulama</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
                         </ul>
                     </li>
 
@@ -199,7 +295,8 @@
     <div class="container">
         <div class="row py-4">
             <div class="col-lg-12 text-center">
-                <h1 class="text-gray-800" style="padding-top: 100px"><i>"Temukan <span style="color: #22D670">artikel islami</span> dari sumber <span style="color: #22D670">terpercaya</span>"</i></h1>
+                <h1 class="text-gray-800" style="padding-top: 100px"><i>"Temukan <span style="color: #22D670">artikel
+                            islami</span> dari sumber <span style="color: #22D670">terpercaya</span>"</i></h1>
             </div>
         </div>
         <div class="row" style="margin-bottom: 200px">
@@ -236,23 +333,23 @@
         <!--Waves end-->
 
     </div>
-    
+
 
     <!-- Script Crawling Search Engine API Google -->
     <script async src="https://cse.google.com/cse.js?cx=443b6d4532c27929b"></script>
-    
+
     <!-- Vendor JS Files -->
-    <script src="{{asset('bootstrap/assets/vendor/jquery/jquery.min.js')}}"></script>
-    <script src="{{asset('bootstrap/assets/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-    <script src="{{asset('bootstrap/assets/vendor/jquery.easing/jquery.easing.min.js')}}"></script>
-    <script src="{{asset('bootstrap/assets/vendor/php-email-form/validate.js')}}"></script>
-    <script src="{{asset('bootstrap/assets/vendor/owl.carousel/owl.carousel.min.js')}}"></script>
-    <script src="{{asset('bootstrap/assets/vendor/isotope-layout/isotope.pkgd.min.js')}}"></script>
-    <script src="{{asset('bootstrap/assets/vendor/venobox/venobox.min.js')}}"></script>
-    <script src="{{asset('bootstrap/assets/vendor/aos/aos.js')}}"></script>
+    <script src="{{ asset('bootstrap/assets/vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('bootstrap/assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('bootstrap/assets/vendor/jquery.easing/jquery.easing.min.js') }}"></script>
+    <script src="{{ asset('bootstrap/assets/vendor/php-email-form/validate.js') }}"></script>
+    <script src="{{ asset('bootstrap/assets/vendor/owl.carousel/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('bootstrap/assets/vendor/isotope-layout/isotope.pkgd.min.js') }}"></script>
+    <script src="{{ asset('bootstrap/assets/vendor/venobox/venobox.min.js') }}"></script>
+    <script src="{{ asset('bootstrap/assets/vendor/aos/aos.js') }}"></script>
 
     <!-- Template Main JS File -->
-    <script src="{{asset('bootstrap/assets/js/main.js')}}"></script>
+    <script src="{{ asset('bootstrap/assets/js/main.js') }}"></script>
 </body>
 
 </html>
