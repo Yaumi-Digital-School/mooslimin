@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{{-- <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
@@ -125,8 +125,134 @@
                     <div class="ml-4 text-center text-sm text-gray-500 sm:text-right sm:ml-0">
                         Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})
                     </div>
+
+                    <span class="flex h-3 w-3">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-3 w-3 bg-purple-500"></span>
+                      </span>
                 </div>
             </div>
         </div>
     </body>
+</html> --}}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+      <!-- Vendor CSS Files -->
+    <link href="{{asset('bootstrap/assets/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{asset('bootstrap/assets/vendor/icofont/icofont.min.css')}}" rel="stylesheet">
+    <link href="{{asset('bootstrap/assets/vendor/boxicons/css/boxicons.min.css')}}" rel="stylesheet">
+    <link href="{{asset('bootstrap/assets/vendor/owl.carousel/assets/owl.carousel.min.css')}}" rel="stylesheet">
+    <link href="{{asset('bootstrap/assets/vendor/venobox/venobox.css')}}" rel="stylesheet">
+    <link href="{{asset('bootstrap/assets/vendor/aos/aos.css')}}" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="{{asset('bootstrap/assets/css/style.css')}}" rel="stylesheet">
+
+    {{-- Waves Css [tailwind] --}}
+    <link rel="stylesheet" href="{{asset('css/waves.css')}}">
+</head>
+
+<body>
+    <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top">
+        <div class="container d-flex align-items-center">
+
+            <h1 class="logo mr-auto"><a href="index.html">Muslim Tool</a></h1>
+            <!-- Uncomment below if you prefer to use an image logo -->
+            <!-- <a href="index.html" class="logo mr-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+            <nav class="nav-menu d-none d-lg-block">
+                <ul>
+                    <li class="active"><a href="">Home</a></li>
+                    <li class="drop-down"><a href="">Layanan</a>
+                        <ul>
+                            <li><a href="#">Drop Down 1</a></li>
+                            <li><a href="#">Drop Down 2</a></li>
+                            <li><a href="#">Drop Down 3</a></li>
+                            <li><a href="#">Drop Down 4</a></li>
+                        </ul>
+                    </li>
+                    <li class="drop-down"><a href="">Community</a>
+                        <ul>
+                            <li><a href="#">Drop Down 1</a></li>
+                            <li><a href="#">Drop Down 2</a></li>
+                            <li><a href="#">Drop Down 3</a></li>
+                            <li><a href="#">Drop Down 4</a></li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </nav><!-- .nav-menu -->
+
+            <a href="#" class="get-started-btn scrollto">Login</a>
+
+        </div>
+    </header><!-- End Header -->
+    <!--Content before waves-->
+    <div class="container">
+        <div class="row py-4">
+            <div class="col-lg-12 text-center">
+                <h1 class="text-gray-800" style="padding-top: 100px"><i>"Temukan <span style="color: #22D670">artikel islami</span> dari sumber <span style="color: #22D670">terpercaya</span>"</i></h1>
+            </div>
+        </div>
+        <div class="row" style="margin-bottom: 200px">
+            <div class="col-lg-12 mb-32">
+                <div class="m-20" style="padding-top: 50px;">
+                    <div class="gcse-search" data-gname="storesearch"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- <div class="inner-header">
+        
+    </div> --}}
+    <div style="position: fixed; left: 0; bottom: 0; width: 100%;">
+
+
+        <!--Waves Container-->
+        <div>
+            <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+                <defs>
+                    <path id="gentle-wave"
+                        d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+                </defs>
+                <g class="parallax">
+                    <use xlink:href="#gentle-wave" x="48" y="0" fill="#78F294" />
+                    <use xlink:href="#gentle-wave" x="48" y="3" fill="#48C57E" />
+                    <use xlink:href="#gentle-wave" x="48" y="5" fill="#30AF73" />
+                    <use xlink:href="#gentle-wave" x="48" y="7" fill="#119A67" />
+                </g>
+            </svg>
+        </div>
+
+        <!--Waves end-->
+
+    </div>
+    
+
+    <!-- Script Crawling Search Engine API Google -->
+    <script async src="https://cse.google.com/cse.js?cx=443b6d4532c27929b"></script>
+    
+    <!-- Vendor JS Files -->
+    <script src="{{asset('bootstrap/assets/vendor/jquery/jquery.min.js')}}"></script>
+    <script src="{{asset('bootstrap/assets/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{asset('bootstrap/assets/vendor/jquery.easing/jquery.easing.min.js')}}"></script>
+    <script src="{{asset('bootstrap/assets/vendor/php-email-form/validate.js')}}"></script>
+    <script src="{{asset('bootstrap/assets/vendor/owl.carousel/owl.carousel.min.js')}}"></script>
+    <script src="{{asset('bootstrap/assets/vendor/isotope-layout/isotope.pkgd.min.js')}}"></script>
+    <script src="{{asset('bootstrap/assets/vendor/venobox/venobox.min.js')}}"></script>
+    <script src="{{asset('bootstrap/assets/vendor/aos/aos.js')}}"></script>
+
+    <!-- Template Main JS File -->
+    <script src="{{asset('bootstrap/assets/js/main.js')}}"></script>
+</body>
+
 </html>
