@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ForumController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,6 +23,8 @@ Route::group(['middleware' => ['auth','checkRole:admin,user']], function(){
         return view('dashboard');
     })->name('dashboard');
 });
+
+Route::get('/forum', [ForumController::class, 'index'])->name('forum.index');
 
 
 require __DIR__.'/auth.php';
