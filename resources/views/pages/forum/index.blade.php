@@ -25,7 +25,7 @@
                   <div>date buat postingan</div>
               </div>
             </div>
-            <div class="pt-1 pb-1 rounded-pill border border-secondary d-inline-flex align-self-end">
+            <div class="rounded-pill border border-secondary d-inline-flex align-self-end">
 
                 <a href="" class="">
                   <span class="material-icons px-2">
@@ -114,7 +114,7 @@
                   <div>date buat postingan</div>
               </div>
             </div>
-            <div class="pt-1 pb-1 rounded-pill border border-secondary d-inline-flex align-self-center">
+            <div class="rounded-pill border border-secondary d-inline-flex align-self-center">
 
               <a href="" class="">
                 <span class="material-icons px-2">
