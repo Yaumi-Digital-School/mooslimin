@@ -55,6 +55,9 @@
             </div>
         </form> 
     </x-auth-card> --}}
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <script src="https://cdn.tailwindcss.com"> </script>
+    <script src="{{ asset('js/tailwind.config.js') }}" defer></script>
 </x-guest-layout>
 
 <div class="flex">
