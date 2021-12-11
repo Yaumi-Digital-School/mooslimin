@@ -58,7 +58,9 @@
     <link href="{{ asset('bootstrap/assets/css/style.css') }}" rel="stylesheet">
 
     {{-- Waves Css [tailwind] --}}
-    <link rel="stylesheet" href="{{ asset('css/waves.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <script src="https://cdn.tailwindcss.com"> </script>
+    <script src="{{ asset('js/tailwind.config.js') }}" defer></script>
 </head>
 
 <body>
@@ -187,7 +189,7 @@
                 </ul>
             </nav><!-- .nav-menu -->
 
-            <a href="#" class="get-started-btn scrollto">Login</a>
+            <a href="/login" class="get-started-btn scrollto">Login</a>
 
         </div>
     </header><!-- End Header -->

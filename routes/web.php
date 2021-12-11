@@ -27,4 +27,5 @@ Route::group(['middleware' => ['auth','checkRole:admin,user']], function(){
 Route::get('/forum', [ForumController::class, 'index'])->name('forum.index');
 
 
+
 require __DIR__.'/auth.php';
