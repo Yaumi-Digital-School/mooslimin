@@ -59,11 +59,18 @@
 
 <div class="flex">
     <div class="flex w-2/3">
-
+        <div>
+            <div class="font-inter p-8">
+                <p class="font-inter font-bold text-2xl">Masuk</p>
+                <dd class="font-inter text-sm text-[#9797AA]"> Masuk untuk melanjutkan ke forum </dd>
+            </div>
+        </div>
     </div>
     
     <div class="flex-1 flex flex-row items-center bg-primary-500 h-screen">
-        <h1 class="font-inter font-semibold p-20 text-6xl text-white"> “ Ilmu akan menghidupkan jiwa. "</h1>
-        <h1 class="font-inter font-semibold p-">- Ali bin Abi Thalib </h1>
+        <div class=" p-20 space-y-4">
+            <h1 class="font-inter font-semibold text-6xl text-white"> “ Ilmu akan menghidupkan jiwa. “</h1>
+            <h1 class="font-inter font-semibold text-white">- Ali bin Abi Thalib </h1>
+        </div>
     </div>
 

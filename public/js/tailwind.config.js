@@ -13,11 +13,21 @@ tailwind.config = {
                     '800': '#0A7C5D',
                     '900': '#066656',
                 }
+
+
+
             },
+
             fontFamily: {
+
                 sans: ['Nunito'],
+
                 inter: ['Inter']
+
             },
+
         },
+
     },
+
 }
