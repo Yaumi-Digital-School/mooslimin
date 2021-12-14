@@ -3,13 +3,12 @@
     Muslim Tool
     @endsection
     <div class="flex">
-        <div class="flex w-2/3">
-            <div>
-                <div class="font-inter p-10 space-y-2">
+        <div class="flex w-2/3 flex-col">
+                <div class="font-inter p-10 space-y-2 ml-7 mt-7">
                     <p class="font-inter font-bold text-2xl">Masuk</p>
                     <p class="font-inter text-sm text-[#9797AA]"> Masuk untuk melanjutkan ke forum </p>
                 </div>
-                <div class="font-inter p-16 space-y-2">
+                <div class="font-inter p-10 space-y-2 ml-7">
                     <form action="">
                         <div class="">
                             <div>
@@ -22,15 +21,25 @@
                                         <input type="password" placeholder="Password"
                                             class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600">
                             </div>
-                            <div class="flex items-baseline justify-between">
-                                <button class="px-6 py-2 mt-4 text-white bg-primary-500 rounded-lg hover:bg-primary-900">Login</button>
-                                <p>Belum punya akun?</p><a href="#" class="text-sm text-primary-500 hover:underline">Daftar</a>
+
+                            <div class="flex items-center justify-between my-5">
+                                <div class="flex items-center space-x-2 ">
+                                    <input id="ingat_akun" name="remember" type="checkbox"/>
+                                    <label class="font-normal text-sm" for="ingat_akun"> Ingat Akun Saya </label> 
+                                </div>
+                                
+                                
+                                <a href="#" class="ml-auto block text-sm font-semibold text-primary-500 hover:underline">Lupa Password</a>    
+                            </div>
+                            
+                            <div class="flex flex-col items-baseline justify-between mt-28">
+                                <button class="w-full mb-5 px-6 py-2 mt-4 text-white bg-primary-500 rounded-lg hover:bg-primary-900">Login</button>
+                                <p class="font-normal text-sm">Belum punya akun? <a href="#" class="text-sm font-semibold text-primary-500 hover:underline">Daftar</a> </p>
                             </div>
                 </div>
             </div>
         </div>
-        
-        <div class="flex-1 flex flex-row items-center bg-primary-500 h-screen">
+        <div class="flex-1 flex flex-row ml-7 items-center bg-primary-500 h-screen">
             <div class=" p-20 space-y-4">
                 <h1 class="font-inter font-semibold text-6xl text-white"> “ Ilmu akan menghidupkan jiwa. “</h1>
                 <h1 class="font-inter font-semibold text-white">- Ali bin Abi Thalib </h1>
