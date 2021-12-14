@@ -25,19 +25,25 @@
                   <div>date buat postingan</div>
               </div>
             </div>
-            <div class="rounded-pill border border-secondary d-inline-flex align-self-end">
+            <div class="d-flex rounded-pill border border-secondary align-self-center align-content-center">
 
+              <div>
                 <a href="" class="">
                   <span class="material-icons px-2">
                     arrow_circle_up
                   </span>
                 </a>
+              </div>
+              <div class="">
                 |
+              </div>
+              <div>
                 <a href="">
                   <span class="material-icons px-2">
                     arrow_circle_down
                   </span>
                 </a>
+              </div>
 
             </div>
           </div>

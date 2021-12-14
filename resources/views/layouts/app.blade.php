@@ -58,7 +58,8 @@
     <link href="{{ asset('bootstrap/assets/css/style.css') }}" rel="stylesheet">
 
     {{-- Waves Css [tailwind] --}}
-    <link rel="stylesheet" href="{{ asset('css/waves.css') }}">
+    <link rel="stylesheet" href="{{asset('css/waves.css')}}">
+
 </head>
 
 <body>
@@ -72,7 +73,7 @@
 
             <nav class="nav-menu d-none d-lg-block">
                 <ul>
-                    <li class="{{request()->is('/') ? 'active' : ''}}"><a href="">Home</a></li>
+                    <li class="{{request()->is('/') ? 'active' : ''}}"><a href="{{route('home')}}">Home</a></li>
                     <li class="drop-down "><a href="">Layanan</a>
                         <ul>
                             <li class="">
