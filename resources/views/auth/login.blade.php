@@ -1,4 +1,42 @@
 <x-guest-layout>
+    @section('title')
+    Muslim Tool
+    @endsection
+    <div class="flex">
+        <div class="flex w-2/3">
+            <div>
+                <div class="font-inter p-10 space-y-2">
+                    <p class="font-inter font-bold text-2xl">Masuk</p>
+                    <p class="font-inter text-sm text-[#9797AA]"> Masuk untuk melanjutkan ke forum </p>
+                </div>
+                <div class="font-inter p-16 space-y-2">
+                    <form action="">
+                        <div class="">
+                            <div>
+                                <label class="block" for="email">Email<label>
+                                        <input type="text" placeholder="Email"
+                                            class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600">
+                            </div>
+                            <div class="mt-4">
+                                <label class="block">Password<label>
+                                        <input type="password" placeholder="Password"
+                                            class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600">
+                            </div>
+                            <div class="flex items-baseline justify-between">
+                                <button class="px-6 py-2 mt-4 text-white bg-primary-500 rounded-lg hover:bg-primary-900">Login</button>
+                                <p>Belum punya akun?</p><a href="#" class="text-sm text-primary-500 hover:underline">Daftar</a>
+                            </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="flex-1 flex flex-row items-center bg-primary-500 h-screen">
+            <div class=" p-20 space-y-4">
+                <h1 class="font-inter font-semibold text-6xl text-white"> “ Ilmu akan menghidupkan jiwa. “</h1>
+                <h1 class="font-inter font-semibold text-white">- Ali bin Abi Thalib </h1>
+            </div>
+        </div>
+    
     {{-- <x-auth-card>
         <x-slot name="logo">
             <a href="/">
@@ -55,25 +93,6 @@
             </div>
         </form> 
     </x-auth-card> --}}
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    <script src="https://cdn.tailwindcss.com"> </script>
-    <script src="{{ asset('js/tailwind.config.js') }}" defer></script>
 </x-guest-layout>
 
-<div class="flex">
-    <div class="flex w-2/3">
-        <div>
-            <div class="font-inter p-8">
-                <p class="font-inter font-bold text-2xl">Masuk</p>
-                <dd class="font-inter text-sm text-[#9797AA]"> Masuk untuk melanjutkan ke forum </dd>
-            </div>
-        </div>
-    </div>
-    
-    <div class="flex-1 flex flex-row items-center bg-primary-500 h-screen">
-        <div class=" p-20 space-y-4">
-            <h1 class="font-inter font-semibold text-6xl text-white"> “ Ilmu akan menghidupkan jiwa. “</h1>
-            <h1 class="font-inter font-semibold text-white">- Ali bin Abi Thalib </h1>
-        </div>
-    </div>
 
