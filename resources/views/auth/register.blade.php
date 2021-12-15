@@ -1,5 +1,56 @@
 <x-guest-layout>
-    <x-auth-card>
+    @section('title')
+    Muslim Tool
+    @endsection
+    <div class="flex">
+        <div class="flex w-2/3 flex-col">
+                <div class="font-inter p-10 space-y-2 ml-7 mt-7">
+                    <p class="font-inter font-bold text-2xl">Daftar</p>
+                    <p class="font-inter text-sm text-[#9797AA]"> Daftar untuk dapat bergabung dengan forum </p>
+                </div>
+                <div class="font-inter p-10 space-y-2 ml-7">
+                    <form action="">
+                        <div class="">
+                            <div>
+                                <label class="block" for="email">Nama Lengkap<label>
+                                        <input type="text" placeholder="Email"
+                                            class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600">
+                            </div>
+                            <div>
+                                <label class="block" for="email">Email<label>
+                                        <input type="text" placeholder="Email"
+                                            class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600">
+                            </div>
+                            <div class="mt-4">
+                                <label class="block">Password<label>
+                                        <input type="password" placeholder="Password"
+                                            class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600">
+                            </div>
+
+                            <div class="flex items-center my-5">
+                                <div class="flex items-center space-x-2 ">
+                                    <input id="ingat_akun" name="remember" type="checkbox"/>
+                                    <label class="font-normal text-sm" for="ingat_akun"> Saya menyetujui  </label> 
+                                </div>
+                                
+                                
+                                <label class="ml-1 text-sm font-semibold">Syarat dan Ketentuan</label>    
+                            </div>
+                            
+                            <div class="flex flex-col items-baseline justify-between mt-10">
+                                <button class="w-full mb-5 px-6 py-2 mt-4 text-white bg-primary-500 rounded-lg hover:bg-primary-900">Daftar</button>
+                                <p class="font-normal text-sm">Sudah punya akun? <a href="/login" class="text-sm font-semibold text-primary-500 hover:underline">Masuk</a> </p>
+                            </div>
+                </div>
+            </div>
+        </div>
+        <div class="flex-1 flex flex-row ml-7 items-center bg-primary-500 h-screen">
+            <div class=" p-20 space-y-4">
+                <h1 class="font-inter font-semibold text-6xl text-white"> “ Ilmu akan menghidupkan jiwa. “</h1>
+                <h1 class="font-inter font-semibold text-white">- Ali bin Abi Thalib </h1>
+            </div>
+        </div>
+    {{-- <x-auth-card>
         <x-slot name="logo">
             <a href="/">
                 <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
@@ -55,5 +106,5 @@
                 </x-button>
             </div>
         </form>
-    </x-auth-card>
+    </x-auth-card> --}}
 </x-guest-layout>

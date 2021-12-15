@@ -34,7 +34,7 @@
                             
                             <div class="flex flex-col items-baseline justify-between mt-28">
                                 <button class="w-full mb-5 px-6 py-2 mt-4 text-white bg-primary-500 rounded-lg hover:bg-primary-900">Login</button>
-                                <p class="font-normal text-sm">Belum punya akun? <a href="#" class="text-sm font-semibold text-primary-500 hover:underline">Daftar</a> </p>
+                                <p class="font-normal text-sm">Belum punya akun? <a href="/register" class="text-sm font-semibold text-primary-500 hover:underline">Daftar</a> </p>
                             </div>
                 </div>
             </div>
