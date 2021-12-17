@@ -15,9 +15,7 @@ class CreateForumTable extends Migration
     {
         Schema::create('forum', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
             $table->string('user_id');
-            $table->string('slug');
             $table->text('desc');
             $table->string('image')->nullable();
             $table->string('status')->nullable()->default(1);

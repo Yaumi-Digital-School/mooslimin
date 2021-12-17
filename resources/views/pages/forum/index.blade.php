@@ -17,15 +17,18 @@
         </div>
         <div class="col-lg-10 mx-auto py-4">
           {{-- komentar --}}
+          @foreach ($forums as $forum)
+              
+          
           <hr>
           <div class="d-flex justify-content-between">
             <div class="d-flex align-items-center">
-              <img src="{{asset('bootstrap/assets/img/user.jpg')}}" class="rounded-circle mr-3" style="width: 9%" alt="">
+              <img src="{{$forum->user->get_img_avatar()}}" class="rounded-circle mr-3" style="width: 9%" alt="">
               <div class="">
                   <div class="">
-                      <b style="font-size: 1.2rem">Nama User</b>
+                      <b style="font-size: 1.2rem">{{$forum->user->name}}</b>
                   </div>
-                  <div>date buat postingan</div>
+                  <div>{{Carbon\Carbon::parse($forum->created_at)->IsoFormat('dddd MMMM YYYY, LT A')}}</div>
               </div>
             </div>
             <div class="d-flex rounded-pill border border-secondary align-self-center align-content-center">
@@ -52,12 +55,12 @@
           </div>
           <div class="py-3">
             <p class="font-weight-bold">
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Hic ducimus porro 
-              soluta, dolores cumque natus facere voluptatem et ad non quidem aperiam voluptate incidunt 
-              laboriosam. Officiis deleniti voluptate laborum adipisci.
+              {{$forum->desc}}
             </p>
             <div>
-              <img src="{{asset('bootstrap/assets/img/user-2.jpg')}}" class="" style="width: 25%" alt="">
+              @if ($forum->image != null)
+              <img src="{{$forum->get_img_forum()}}" class="" style="width: 25%" alt="">
+              @endif
             </div>
             <div class="mt-3">
               <a href="" class="">Lihat 5 Komentar</a>
@@ -66,28 +69,31 @@
           <div class="card-body rounded-lg" style="background-color: #FAFAFA">
             <div class="d-flex justify-content-between align-items-center align-self-center">
               <img src="{{asset('bootstrap/assets/img/user-2.jpg')}}" class="rounded-circle mr-3" style="width: 4%" alt="">
-              <div class="input-group ">
-                <input type="text" class="form-control rounded-lg mr-3" placeholder="Tambahkan komentar..." aria-label="Recipient's username" aria-describedby="button-addon2">
-                <div class="input-group-append">
-                  <button class="btn btn-success rounded-lg" type="button" id="button-addon2">Tambah Komentar</button>
+              <form class="w-100" action="{{route('forum.add.comment')}}" method="POST" enctype="multipart/form-data">
+                {{ csrf_field() }}
+                <div class="input-group ">
+                  <input type="hidden" id="forum_id" name="forum_id" value="{{$forum->id}}">
+                  <input type="hidden" id="parent" name="parent" value="0">
+                  <input id="desc_comment" name="desc_comment" type="text" class="form-control rounded-lg mr-3" placeholder="Tambahkan komentar..." aria-label="Recipient's username" aria-describedby="button-addon2">
+                  <div class="input-group-append">
+                    <button class="btn btn-success rounded-lg" type="submit" id="button-addon2">Tambah Komentar</button>
+                  </div>
                 </div>
-              </div>
+              </form>
             </div>
 
-            {{-- reply komentar --}}
+            {{-- komentar --}}
             <div id="collapseOne" class="collapse">
+              @foreach ($forum->komentar()->where('parent',0)->orderBy('created_at','desc')->get() as $komentar)
               <div class="d-flex align-items-center py-3">
-                <img src="{{asset('bootstrap/assets/img/user.jpg')}}" class="rounded-circle mr-3 d-flex align-self-baseline" style="width: 4%" alt="">
-                <div class="">
+                <img src="{{$komentar->user->get_img_avatar()}}" class="rounded-circle mr-3 d-flex align-self-baseline" style="width: 4%" alt="">
+                <div class="w-100">
                   <div class="">
-                    <span><b>Nama User</b><span style="color: gray"> . date</span></span>
+                    <span><b>{{$komentar->user->name}}</b><span style="color: gray"> . {{Carbon\Carbon::parse($komentar->created_at)->IsoFormat('dddd MMMM YYYY, LT A')}}</span></span>
                   </div>
-                  <div>
+                  <div class="">
                     <p class="font-weight-bold">
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos commodi a, 
-                      obcaecati iure facere dolorem. Ipsum nemo debitis reprehenderit unde nam? 
-                      Aut necessitatibus et consequatur totam voluptatem similique inventore 
-                      reiciendis.
+                      {{$komentar->desc_comment}}
                     </p>
                   </div>
                   <div class="d-flex justify-content-between">
@@ -114,7 +120,8 @@
                     </div>
                   </div>
                 </div>
-              </div>
+              </div>                  
+              @endforeach
             </div>
 
             <div>
@@ -124,6 +131,7 @@
             </div>
 
           </div>
+          @endforeach
 
         </div>
 
@@ -159,11 +167,12 @@
               </div>
             </div>
             <div class="mt-3">
-              <form action="">
-                <textarea name="" id="" cols="30" rows="7" class="form-control"></textarea>
-                <input type="file" class="form-control-file mt-3">
+              <form action="{{route('forum.store')}}" method="POST" enctype="multipart/form-data">
+                {{ csrf_field() }}
+                <textarea name="desc" id="desc" cols="30" rows="7" class="form-control"></textarea>
+                <input type="file" name="image" id="image" class="form-control-file mt-3">
                 <div class="mt-3">
-                  <button type="button" class="btn btn-primary w-100">Posting</button>
+                  <button type="submit" class="btn btn-primary w-100">Posting</button>
                 </div>
               </form>
             </div>

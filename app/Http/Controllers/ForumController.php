@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Forum;
+use App\Models\KomentarForum;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class ForumController extends Controller
 {
@@ -13,7 +17,8 @@ class ForumController extends Controller
      */
     public function index()
     {
-        return view('pages.forum.index');
+        $forums = Forum::orderBy('created_at','desc')->get();
+        return view('pages.forum.index',compact('forums'));
     }
 
     /**
@@ -34,7 +39,24 @@ class ForumController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $forum = new Forum;
+        // $forum->title = $request->title;
+        // $forum->slug = Str::slug($request->title);
+        $forum->user_id = Auth::user()->id;
+        $forum->desc = $request->desc;
+
+        if($request->hasFile('image')){
+            $request->file('image')->move('img/forum/', $request->file('image')->getClientOriginalName());
+            $forum->image = $request->file('image')->getClientOriginalName();
+        }
+        $forum->save();
+        return redirect()->route('forum.index');
+    }
+
+    public function add_comment(Request $request){
+        $request->request->add(['user_id' => auth()->user()->id]);
+        KomentarForum::create($request->all());
+        return redirect()->back();
     }
 
     /**
