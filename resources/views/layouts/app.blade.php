@@ -60,6 +60,8 @@
     {{-- Waves Css [tailwind] --}}
     <link rel="stylesheet" href="{{asset('css/waves.css')}}">
 
+    @yield('css')
+
 </head>
 
 <body>

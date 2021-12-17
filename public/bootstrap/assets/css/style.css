@@ -6,6 +6,29 @@
 */
 
 /*--------------------------------------------------------------
+# Custom dari luar
+--------------------------------------------------------------*/
+/* Collapse Custom */
+.collapsible-link::before {
+  content: '\f107';
+  /* position: absolute; */
+  /* top: 50%; */
+  right: 0.8rem;
+  /* transform: translateY(-50%); */
+  /* display: block; */
+  font-family: 'FontAwesome';
+  font-size: 1.1rem;
+}
+
+.collapsible-link[aria-expanded='false']::before {
+  content: '\f107';
+}
+.collapsible-link[aria-expanded='true']::before {
+  content: '\f106';
+}
+/* Collapse Custom */
+
+/*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
 body {
