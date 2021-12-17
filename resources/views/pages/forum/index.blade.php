@@ -10,8 +10,8 @@
       <div class="row py-5">
         <div class="col-lg-10 mx-auto">
           <!-- Button trigger modal -->
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-            Buat Postingan
+          <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#exampleModal">
+            <i class="fas fa-plus"></i> Buat Postingan
           </button>
 
         </div>
@@ -118,7 +118,7 @@
             </div>
 
             <div>
-              <button class="btn btn-link btn-block text-center collapsible-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              <button class="btn btn-link btn-block text-center collapsible-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
                 Lihat Semua Komentar
               </button>
             </div>
