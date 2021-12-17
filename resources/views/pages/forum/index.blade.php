@@ -28,7 +28,7 @@
                   <div class="">
                       <b style="font-size: 1.2rem">{{$forum->user->name}}</b>
                   </div>
-                  <div>{{Carbon\Carbon::parse($forum->created_at)->IsoFormat('dddd MMMM YYYY, LT A')}}</div>
+                  <div>{{Carbon\Carbon::parse($forum->created_at)->IsoFormat('d MMMM YYYY, LT ')}}</div>
               </div>
             </div>
             <div class="d-flex  align-items-center">
@@ -59,7 +59,7 @@
               @endif
             </div>
             <div class="mt-3">
-              <a href="" class="">Lihat 5 Komentar</a>
+              <span href="" class="">Lihat {{$forum->komentar()->where('parent',0)->count()}} Komentar</span>
             </div>
           </div>
           <div class="card-body rounded-lg" style="background-color: #FAFAFA">
@@ -84,7 +84,7 @@
               <img src="{{$komentar->user->get_img_avatar()}}" class="rounded-circle mr-3 d-flex align-self-baseline" style="width: 4%" alt="">
               <div class="w-100">
                 <div class="">
-                  <span><b>{{$komentar->user->name}}</b><span style="color: gray"> . {{Carbon\Carbon::parse($komentar->created_at)->IsoFormat('dddd MMMM YYYY, LT A')}}</span></span>
+                  <span><b>{{$komentar->user->name}}</b><span style="color: gray"> . {{Carbon\Carbon::parse($komentar->created_at)->IsoFormat('d MMMM YYYY')}}</span></span>
                 </div>
                 <div class="">
                   <p class="font-weight-bold">
