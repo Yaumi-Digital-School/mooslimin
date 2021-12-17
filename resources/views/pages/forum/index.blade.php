@@ -31,23 +31,19 @@
                   <div>{{Carbon\Carbon::parse($forum->created_at)->IsoFormat('dddd MMMM YYYY, LT A')}}</div>
               </div>
             </div>
-            <div class="d-flex rounded-pill border border-secondary align-self-center align-content-center">
+            <div class="d-flex  align-items-center">
 
-              <div>
+              <div class="">
                 <a href="" class="">
-                  <span class="material-icons px-2">
-                    arrow_circle_up
-                  </span>
+                  <span><i class="fas fa-arrow-circle-up" style="font-size: 1.4rem"></i> 1</span>
                 </a>
               </div>
-              <div class="">
+              <div class="px-2">
                 |
               </div>
               <div>
                 <a href="">
-                  <span class="material-icons px-2">
-                    arrow_circle_down
-                  </span>
+                  <span><i class="fas fa-arrow-circle-down" style="font-size: 1.4rem"></i> 1</span>
                 </a>
               </div>
 
@@ -82,9 +78,47 @@
               </form>
             </div>
 
-            {{-- komentar --}}
-            <div id="collapseOne" class="collapse">
-              @foreach ($forum->komentar()->where('parent',0)->orderBy('created_at','desc')->get() as $komentar)
+            {{-- forloop komentar --}}
+            @foreach ($forum->komentar()->where('parent',0)->orderBy('created_at','desc')->limit(1)->get() as $komentar)
+            <div class="d-flex align-items-center py-3">
+              <img src="{{$komentar->user->get_img_avatar()}}" class="rounded-circle mr-3 d-flex align-self-baseline" style="width: 4%" alt="">
+              <div class="w-100">
+                <div class="">
+                  <span><b>{{$komentar->user->name}}</b><span style="color: gray"> . {{Carbon\Carbon::parse($komentar->created_at)->IsoFormat('dddd MMMM YYYY, LT A')}}</span></span>
+                </div>
+                <div class="">
+                  <p class="font-weight-bold">
+                    {{$komentar->desc_comment}}
+                  </p>
+                </div>
+                <div class="d-flex justify-content-between">
+                  <div class="d-flex align-items-center">
+                    <a href="">
+                      <span class="material-icons mr-2">
+                        arrow_circle_up
+                      </span>
+                    </a>
+                    <span style="color: gray">Dukung Naik . 7</span>
+                  </div>
+
+                  <div class="d-flex align-items-center">
+                    <a href="">
+                      <span class="material-icons mr-2" style="color: gray">
+                        arrow_circle_down
+                      </span>
+                    </a>
+                    {{-- <a href="">
+                      <span class="material-icons" style="color: gray">
+                        outlined_flag
+                      </span>
+                    </a> --}}
+                  </div>
+                </div>
+              </div>
+            </div> 
+            @endforeach
+            <div id="collapse-{{$forum->id}}" class="collapse">
+              @foreach ($forum->komentar()->where('parent',0)->orderBy('created_at','desc')->skip(1)->take(3)->get() as $komentar)
               <div class="d-flex align-items-center py-3">
                 <img src="{{$komentar->user->get_img_avatar()}}" class="rounded-circle mr-3 d-flex align-self-baseline" style="width: 4%" alt="">
                 <div class="w-100">
@@ -125,7 +159,7 @@
             </div>
 
             <div>
-              <button class="btn btn-link btn-block text-center collapsible-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+              <button class="btn btn-link btn-block text-center collapsible-link" type="button" data-toggle="collapse" data-target="#collapse-{{$forum->id}}" aria-expanded="false" aria-controls="collapseOne">
                 Lihat Semua Komentar
               </button>
             </div>

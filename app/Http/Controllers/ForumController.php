@@ -17,8 +17,10 @@ class ForumController extends Controller
      */
     public function index()
     {
+        $count = KomentarForum::count();
+        // dd($count->count());
         $forums = Forum::orderBy('created_at','desc')->get();
-        return view('pages.forum.index',compact('forums'));
+        return view('pages.forum.index',compact('forums','count'));
     }
 
     /**
