@@ -9,16 +9,17 @@
                     <p class="font-inter text-sm text-[#9797AA]"> Masuk untuk melanjutkan ke forum </p>
                 </div>
                 <div class="font-inter p-10 space-y-2 ml-7">
-                    <form action="">
+                    <form method="POST" action="{{ route('login') }}">
+                        {{ csrf_field() }}
                         <div class="">
                             <div>
-                                <label class="block" for="email">Email<label>
-                                        <input type="text" placeholder="Email"
+                                <label class="block">Email<label>
+                                        <input id="email" name="email" type="email" placeholder="Email"
                                             class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600">
                             </div>
                             <div class="mt-4">
                                 <label class="block">Password<label>
-                                        <input type="password" placeholder="Password"
+                                        <input id="password" name="password" type="password" placeholder="Password"
                                             class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600">
                             </div>
 
@@ -36,6 +37,7 @@
                                 <button class="w-full mb-5 px-6 py-2 mt-4 text-white bg-primary-500 rounded-lg hover:bg-primary-900">Login</button>
                                 <p class="font-normal text-sm">Belum punya akun? <a href="/register" class="text-sm font-semibold text-primary-500 hover:underline">Daftar</a> </p>
                             </div>
+                    </form>
                 </div>
             </div>
         </div>

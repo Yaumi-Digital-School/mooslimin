@@ -58,7 +58,7 @@
     <link href="{{ asset('bootstrap/assets/css/style.css') }}" rel="stylesheet">
 
     {{-- Waves Css [tailwind] --}}
-    <link rel="stylesheet" href="{{asset('css/waves.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/waves.css') }}">
 
     @yield('css')
 
@@ -75,7 +75,7 @@
 
             <nav class="nav-menu d-none d-lg-block">
                 <ul>
-                    <li class="{{request()->is('/') ? 'active' : ''}}"><a href="{{route('home')}}">Home</a></li>
+                    <li class="{{ request()->is('/') ? 'active' : '' }}"><a href="{{ route('home') }}">Home</a></li>
                     <li class="drop-down "><a href="">Layanan</a>
                         <ul>
                             <li class="">
@@ -148,10 +148,12 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="drop-down {{request()->is('forum') ? 'active' : (request()->is('/lain') ? 'active' : '')}}"><a href="">Community</a>
+                    <li
+                        class="drop-down {{ request()->is('forum') ? 'active' : (request()->is('/lain') ? 'active' : '') }}">
+                        <a href="">Community</a>
                         <ul>
-                            <li class="{{request()->is('forum') ? 'active' : ''}}">
-                                <a href="{{route('forum.index')}}">
+                            <li class="{{ request()->is('forum') ? 'active' : '' }}">
+                                <a href="{{ route('forum.index') }}">
                                     <div class="d-flex align-items-center">
                                         <div class="p-2 rounded-lg mr-3" style="background-color: #F8F8F8">
                                             <span class="material-icons" style="font-size: 2.5rem; color: #78F294">
@@ -187,10 +189,71 @@
                         </ul>
                     </li>
 
+                    @auth
+                        <li
+                            class="drop-down {{ request()->is('forum') ? 'active' : (request()->is('/lain') ? 'active' : '') }}">
+                            {{-- <a href="">Profile</a> --}}
+                            <img src="{{ asset('bootstrap/assets/img/user.jpg') }}" class="d-inline rounded-circle mr-5"
+                                            style="width: 30px" alt="">
+                            <ul>
+                                <li class="{{ request()->is('forum') ? 'active' : '' }}">
+                                    <a href="#">
+                                        <div class="d-flex align-items-center">
+                                            <img src="{{ asset('bootstrap/assets/img/user.jpg') }}" class="p-2 rounded-circle mr-3"
+                                            style="width: 50px" alt="">
+                                            <div class="">
+                                                <div class="">
+                                                    <b style="font-size: 1.2rem">Nama</b>
+                                                </div>
+                                                <div>Lihat Profil Anda</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    {{-- <div class="d-flex align-items-center">
+                                        <img src="{{ asset('bootstrap/assets/img/user.jpg') }}" class="p-2 rounded-circle mr-3"
+                                            style="width: 30%" alt="">
+                                        <div class="">
+                                            <div class="">
+                                                <b style="font-size: 1.2rem">Nama User</b>
+                                            </div>
+                                            <div>
+                                                <a href="">
+                                                    Lihat Profil Anda
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div> --}}
+                                </li>
+                                <li>
+                                    <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();">
+                                        <div class="d-flex align-items-center">
+                                            <div class="p-2 rounded-lg mr-3" style="background-color: #F8F8F8">
+                                                <span class="material-icons" style="font-size: 2.5rem; color: #FF3859">
+                                                    logout
+                                                </span>
+                                            </div>
+                                            <div class="">
+                                                <div class="">
+                                                    <b style="font-size: 1.2rem">Keluar</b>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+                                </li>
+                            </ul>
+                        </li>
+                    @endauth
                 </ul>
             </nav><!-- .nav-menu -->
 
-            <a href="/login" class="get-started-btn scrollto">Login</a>
+            @auth
+            @else
+                <a href="/login" class="get-started-btn scrollto">Login</a>
+            @endauth
 
         </div>
     </header><!-- End Header -->
