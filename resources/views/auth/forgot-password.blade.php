@@ -1,5 +1,28 @@
 <x-guest-layout>
-    <x-auth-card>
+    @section('title')
+    Muslim Tool
+    @endsection
+
+    <div class="h-screen w-screen flex flex-col justify-center  font-inter">
+        <form method="POST" action="{{ route('password.email') }}" class="mx-auto w-96">
+            @csrf
+            <h1 class="text-3xl text-center font-bold">Lupa Password</h1>
+
+           <div class="mt-20">
+                <label class="block" for="email">Email
+                    <span class="text-red-500">*</span>
+                </label>
+                <input 
+                    type="text" 
+                    placeholder="Email"
+                    class="w-full text-base px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600" 
+                    required>
+           </div>
+
+            <button class="w-full text-base mb-5 px-6 py-2 mt-8 text-white bg-primary-500 rounded-lg hover:bg-primary-900">Request Password</button>
+        </form>
+    </div>
+    {{-- <x-auth-card>
         <x-slot name="logo">
             <a href="/">
                 <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
@@ -32,5 +55,5 @@
                 </x-button>
             </div>
         </form>
-    </x-auth-card>
+    </x-auth-card> --}}
 </x-guest-layout>

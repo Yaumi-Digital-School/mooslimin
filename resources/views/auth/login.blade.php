@@ -2,8 +2,9 @@
     @section('title')
     Muslim Tool
     @endsection
-    <div class="flex">
-        <div class="flex w-2/3 flex-col">
+    <div class="flex overflow-x-hidden w-screen">
+        <form method="POST" action="{{ route('login.act') }}" class="flex w-7/12 flex-col flex-none">
+            @csrf
                 <div class="font-inter p-10 space-y-2 ml-7 mt-7">
                     <p class="font-inter font-bold text-2xl">Masuk</p>
                     <p class="font-inter text-sm text-[#9797AA]"> Masuk untuk melanjutkan ke forum </p>
@@ -12,14 +13,14 @@
                     <form action="">
                         <div class="">
                             <div>
-                                <label class="block" for="email">Email<label>
+                                <label class="block" for="email">Email<span class="text-red-500">*</span></label>
                                         <input type="text" placeholder="Email"
-                                            class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600">
+                                            class="w-full text-base  px-4 py-2 m t-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600" required>
                             </div>
                             <div class="mt-4">
-                                <label class="block">Password<label>
+                                <label class="block">Password <span class="text-red-500">*</span></label>
                                         <input type="password" placeholder="Password"
-                                            class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600">
+                                            class="w-full text-base  px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600" required>
                             </div>
 
                             <div class="flex items-center justify-between my-5">
@@ -29,7 +30,7 @@
                                 </div>
                                 
                                 
-                                <a href="#" class="ml-auto block text-sm font-semibold text-primary-500 hover:underline">Lupa Password</a>    
+                                <a href="/forgot-password" class="ml-auto block text-sm font-semibold text-primary-500 hover:underline">Lupa Password</a>    
                             </div>
                             
                             <div class="flex flex-col items-baseline justify-between mt-28">
@@ -37,9 +38,9 @@
                                 <p class="font-normal text-sm">Belum punya akun? <a href="/register" class="text-sm font-semibold text-primary-500 hover:underline">Daftar</a> </p>
                             </div>
                 </div>
-            </div>
+            </form>
         </div>
-        <div class="flex-1 flex flex-row ml-7 items-center bg-primary-500 h-screen">
+        <div class="flex-1 flex flex-row items-center bg-primary-500 h-screen">
             <div class=" p-20 space-y-4">
                 <h1 class="font-inter font-semibold text-6xl text-white"> “ Ilmu akan menghidupkan jiwa. “</h1>
                 <h1 class="font-inter font-semibold text-white">- Ali bin Abi Thalib </h1>
