@@ -23,4 +23,8 @@ class KomentarForum extends Model
     public function child(){
         return $this->hasMany(KomentarForum::class,'parent');
     }
+
+    public function vote(){
+        return $this->hasMany(KomentarForumVote::class);
+    }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Forum;
 use App\Models\ForumVote;
 use App\Models\KomentarForum;
+use App\Models\KomentarForumVote;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -84,6 +85,33 @@ class ForumController extends Controller
                 ForumVote::where([
                     ['user_id',auth()->user()->id],
                     ['forum_id',$request->forum_id]
+                ])->update([
+                    'type' => $request->type,
+                ]);
+                return redirect()->back();
+            }
+        }
+    }
+
+    public function komentar_vote(Request $request){
+        $request->request->add(['user_id' => auth()->user()->id]);
+        // dd($request->type);
+        $cek = KomentarForumVote::where([
+            ['user_id',auth()->user()->id],
+            ['komentar_forum_id',$request->komentar_forum_id]
+        ])->first();
+        if($cek == null){
+            KomentarForumVote::create($request->all());
+            return redirect()->back(); 
+        }else{
+            // dd('ada isi');
+            if($cek->type == $request->type){
+                dd('udah vote');
+            }else{
+                // dd('ganti vote');
+                KomentarForumVote::where([
+                    ['user_id',auth()->user()->id],
+                    ['komentar_forum_id',$request->komentar_forum_id]
                 ])->update([
                     'type' => $request->type,
                 ]);

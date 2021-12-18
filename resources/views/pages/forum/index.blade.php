@@ -94,7 +94,7 @@
               </form>
             </div>
 
-            {{-- komentar --}}
+            {{--------------------- komentar -----------------------------------------}}
             @foreach ($forum->komentar()->where('parent',0)->orderBy('created_at','desc')->limit(1)->get() as $komentar)
             <div class="d-flex align-items-center py-3">
               <img src="{{$komentar->user->get_img_avatar()}}" class="rounded-circle mr-3 d-flex align-self-baseline" style="width: 4%" alt="">
@@ -108,21 +108,33 @@
                   </p>
                 </div>
                 <div class="d-flex justify-content-between">
-                  <div class="d-flex align-items-center">
-                    <a href="">
-                      <span class="material-icons mr-2">
-                        arrow_circle_up
-                      </span>
-                    </a>
-                    <span style="color: gray">Dukung Naik . 7</span>
+                  <div class="d-flex justify-content-start align-items-center">
+                    <form action="{{route('komentar.vote')}}" method="POST" enctype="multipart/form-data">
+                      {{ csrf_field() }}
+                      <input type="hidden" id="komentar_forum_id" name="komentar_forum_id" value="{{$komentar->id}}">
+                      <input type="hidden" id="type" name="type" value="upvote">
+                      <input type="hidden" id="value" name="value" value="1">
+                      <button type="submit" class="btn btn-link" style="text-decoration: none;">
+                        <a href="" class="">
+                          <span><i class="fas fa-arrow-circle-up" style="font-size: 1.4rem"></i> </span>
+                        </a>
+                      </button>
+                    </form>
+                    <span style="color: gray">Dukung Naik . {{$komentar->vote()->where('type','upvote')->sum('value')}}</span>
                   </div>
 
                   <div class="d-flex align-items-center">
-                    <a href="">
-                      <span class="material-icons mr-2" style="color: gray">
-                        arrow_circle_down
-                      </span>
-                    </a>
+                    <form action="{{route('komentar.vote')}}" method="POST" enctype="multipart/form-data">
+                      {{ csrf_field() }}
+                      <input type="hidden" id="komentar_forum_id" name="komentar_forum_id" value="{{$komentar->id}}">
+                      <input type="hidden" id="type" name="type" value="downvote">
+                      <input type="hidden" id="value" name="value" value="1">
+                      <button type="submit" class="btn btn-link" style="text-decoration: none;">
+                        <a href="" class="">
+                          <span><i class="fas fa-arrow-circle-down" style="font-size: 1.4rem"></i> </span>
+                        </a>
+                      </button>
+                    </form>
                     {{-- <a href="">
                       <span class="material-icons" style="color: gray">
                         outlined_flag
@@ -148,20 +160,32 @@
                   </div>
                   <div class="d-flex justify-content-between">
                     <div class="d-flex align-items-center">
-                      <a href="">
-                        <span class="material-icons mr-2">
-                          arrow_circle_up
-                        </span>
-                      </a>
-                      <span style="color: gray">Dukung Naik . 7</span>
+                      <form action="{{route('komentar.vote')}}" method="POST" enctype="multipart/form-data">
+                        {{ csrf_field() }}
+                        <input type="hidden" id="forum_id" name="komentar_forum_id" value="{{$komentar->id}}">
+                        <input type="hidden" id="type" name="type" value="upvote">
+                        <input type="hidden" id="value" name="value" value="1">
+                        <button type="submit" class="btn btn-link" style="text-decoration: none;">
+                          <a href="" class="">
+                            <span><i class="fas fa-arrow-circle-up" style="font-size: 1.4rem"></i> </span>
+                          </a>
+                        </button>
+                      </form>
+                      <span style="color: gray">Dukung Naik . {{$komentar->vote()->where('type','upvote')->sum('value')}}</span>
                     </div>
   
                     <div class="d-flex align-items-center">
-                      <a href="">
-                        <span class="material-icons mr-2" style="color: gray">
-                          arrow_circle_down
-                        </span>
-                      </a>
+                      <form action="{{route('komentar.vote')}}" method="POST" enctype="multipart/form-data">
+                        {{ csrf_field() }}
+                        <input type="hidden" id="forum_id" name="komentar_forum_id" value="{{$komentar->id}}">
+                        <input type="hidden" id="type" name="type" value="downvote">
+                        <input type="hidden" id="value" name="value" value="1">
+                        <button type="submit" class="btn btn-link" style="text-decoration: none;">
+                          <a href="" class="">
+                            <span><i class="fas fa-arrow-circle-down" style="font-size: 1.4rem"></i> </span>
+                          </a>
+                        </button>
+                      </form>
                       {{-- <a href="">
                         <span class="material-icons" style="color: gray">
                           outlined_flag
