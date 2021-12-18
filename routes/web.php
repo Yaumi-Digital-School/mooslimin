@@ -24,6 +24,7 @@ Route::group(['middleware' => ['auth','checkRole:admin,user']], function(){
     })->name('dashboard');
     Route::post('/forum/store', [ForumController::class, 'store'])->name('forum.store');
     Route::post('/forum/add/comment', [ForumController::class, 'add_comment'])->name('forum.add.comment');
+    Route::post('/forum/vote', [ForumController::class, 'forum_vote'])->name('forum.vote');
 });
 
 Route::get('/forum', [ForumController::class, 'index'])->name('forum.index');

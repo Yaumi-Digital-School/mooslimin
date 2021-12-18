@@ -16,7 +16,7 @@
 
         </div>
         <div class="col-lg-10 mx-auto py-4">
-          {{-- komentar --}}
+          {{-- postingan / forum --}}
           @foreach ($forums as $forum)
               
           
@@ -34,17 +34,33 @@
             <div class="d-flex  align-items-center">
 
               <div class="">
-                <a href="" class="">
-                  <span><i class="fas fa-arrow-circle-up" style="font-size: 1.4rem"></i> 1</span>
-                </a>
+                <form action="{{route('forum.vote')}}" method="POST" enctype="multipart/form-data">
+                  {{ csrf_field() }}
+                  <input type="hidden" id="forum_id" name="forum_id" value="{{$forum->id}}">
+                  <input type="hidden" id="type" name="type" value="upvote">
+                  <input type="hidden" id="value" name="value" value="1">
+                  <button type="submit" class="btn btn-link" style="text-decoration: none;">
+                    <a href="" class="">
+                      <span><i class="fas fa-arrow-circle-up" style="font-size: 1.4rem"></i> {{$upvote}}</span>
+                    </a>
+                  </button>
+                </form>
               </div>
-              <div class="px-2">
+              <div class="">
                 |
               </div>
               <div>
-                <a href="">
-                  <span><i class="fas fa-arrow-circle-down" style="font-size: 1.4rem"></i> 1</span>
-                </a>
+                <form action="{{route('forum.vote')}}" method="POST" enctype="multipart/form-data">
+                  {{ csrf_field() }}
+                  <input type="hidden" id="forum_id" name="forum_id" value="{{$forum->id}}">
+                  <input type="hidden" id="type" name="type" value="downvote">
+                  <input type="hidden" id="value" name="value" value="1">
+                  <button type="submit" class="btn btn-link" style="text-decoration: none;">
+                    <a href="" class="">
+                      <span><i class="fas fa-arrow-circle-down" style="font-size: 1.4rem"></i> {{$downvote}}</span>
+                    </a>
+                  </button>
+                </form>
               </div>
 
             </div>
@@ -78,7 +94,7 @@
               </form>
             </div>
 
-            {{-- forloop komentar --}}
+            {{-- komentar --}}
             @foreach ($forum->komentar()->where('parent',0)->orderBy('created_at','desc')->limit(1)->get() as $komentar)
             <div class="d-flex align-items-center py-3">
               <img src="{{$komentar->user->get_img_avatar()}}" class="rounded-circle mr-3 d-flex align-self-baseline" style="width: 4%" alt="">

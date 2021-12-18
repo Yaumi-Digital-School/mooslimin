@@ -27,4 +27,8 @@ class Forum extends Model
     public function komentar(){
         return $this->hasMany(KomentarForum::class);
     }
+
+    public function vote(){
+        return $this->hasMany(ForumVote::class);
+    }
 }
