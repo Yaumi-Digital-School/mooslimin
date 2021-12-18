@@ -41,7 +41,7 @@
                   <input type="hidden" id="value" name="value" value="1">
                   <button type="submit" class="btn btn-link" style="text-decoration: none;">
                     <a href="" class="">
-                      <span><i class="fas fa-arrow-circle-up" style="font-size: 1.4rem"></i> {{$upvote}}</span>
+                      <span><i class="fas fa-arrow-circle-up" style="font-size: 1.4rem"></i> {{$forum->vote()->where('type','upvote')->sum('value')}}</span>
                     </a>
                   </button>
                 </form>
@@ -57,7 +57,7 @@
                   <input type="hidden" id="value" name="value" value="1">
                   <button type="submit" class="btn btn-link" style="text-decoration: none;">
                     <a href="" class="">
-                      <span><i class="fas fa-arrow-circle-down" style="font-size: 1.4rem"></i> {{$downvote}}</span>
+                      <span><i class="fas fa-arrow-circle-down" style="font-size: 1.4rem"></i> {{$forum->vote()->where('type','downvote')->sum('value')}}</span>
                     </a>
                   </button>
                 </form>

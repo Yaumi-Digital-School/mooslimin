@@ -68,7 +68,10 @@ class ForumController extends Controller
     public function forum_vote(Request $request){
         $request->request->add(['user_id' => auth()->user()->id]);
         // dd($request->type);
-        $cek = ForumVote::where('user_id',auth()->user()->id)->first();
+        $cek = ForumVote::where([
+            ['user_id',auth()->user()->id],
+            ['forum_id',$request->forum_id]
+        ])->first();
         if($cek == null){
             ForumVote::create($request->all());
             return redirect()->back(); 
@@ -78,7 +81,10 @@ class ForumController extends Controller
                 dd('udah vote');
             }else{
                 // dd('ganti vote');
-                ForumVote::where('user_id',auth()->user()->id)->update([
+                ForumVote::where([
+                    ['user_id',auth()->user()->id],
+                    ['forum_id',$request->forum_id]
+                ])->update([
                     'type' => $request->type,
                 ]);
                 return redirect()->back();
