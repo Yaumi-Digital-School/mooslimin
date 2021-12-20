@@ -43,10 +43,10 @@ class User extends Authenticatable
     ];
 
     public function get_img_avatar(){
-        if(!$this->image){
+        if(!$this->avatar){
             return asset('img/umum/avatar.png');
         }
 
-        return asset('img/avatar/'.$this->image);
+        return asset('img/avatar/'.$this->avatar);
     }
 }

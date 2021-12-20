@@ -192,15 +192,15 @@
 
                     @auth
                         <li
-                            class="drop-down {{ request()->is('forum') ? 'active' : (request()->is('/lain') ? 'active' : '') }}">
+                            class="drop-down {{ request()->is('profile') ? 'active' : (request()->is('/lain') ? 'active' : '') }}">
                             {{-- <a href="">Profile</a> --}}
-                            <img src="{{ asset('bootstrap/assets/img/user.jpg') }}" class="d-inline rounded-circle mr-5"
+                            <img src="{{ Auth::user()->get_img_avatar() }}" class="d-inline rounded-circle mr-5"
                                             style="width: 30px" alt="">
                             <ul>
-                                <li class="{{ request()->is('forum') ? 'active' : '' }}">
-                                    <a href="#">
+                                <li class="{{ request()->is('profile') ? 'active' : '' }}">
+                                    <a href="{{route('profile.index')}}">
                                         <div class="d-flex align-items-center">
-                                            <img src="{{ asset('bootstrap/assets/img/user.jpg') }}" class="p-2 rounded-circle mr-3"
+                                            <img src="{{ Auth::user()->get_img_avatar() }}" class="p-2 rounded-circle mr-3"
                                             style="width: 50px" alt="">
                                             <div class="">
                                                 <div class="">
@@ -274,6 +274,7 @@
 
     <!-- Template Main JS File -->
     <script src="{{ asset('bootstrap/assets/js/main.js') }}"></script>
+    @yield('js')
 </body>
 
 </html>
