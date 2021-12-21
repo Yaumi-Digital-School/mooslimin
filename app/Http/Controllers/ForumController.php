@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\ModalStaticHelpers;
+use App\Http\Requests\CreateForumRequest;
 use App\Models\Forum;
 use App\Models\ForumVote;
 use App\Models\KomentarForum;
@@ -44,7 +46,7 @@ class ForumController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateForumRequest $request)
     {
         $forum = new Forum;
         // $forum->title = $request->title;
@@ -56,14 +58,15 @@ class ForumController extends Controller
             $request->file('image')->move('img/forum/', $request->file('image')->getClientOriginalName());
             $forum->image = $request->file('image')->getClientOriginalName();
         }
-        $forum->save();
-        return redirect()->route('forum.index');
+        $forum->save(); 
+
+        return ModalStaticHelpers::redirect_success_with_title('Postingan','Postingan berhasil di buat');
     }
 
     public function add_comment(Request $request){
         $request->request->add(['user_id' => auth()->user()->id]);
         KomentarForum::create($request->all());
-        return redirect()->back();
+        return ModalStaticHelpers::redirect_success_with_title('Komentar','Komentar berhasil di buat');
     }
     
     public function forum_vote(Request $request){
@@ -75,11 +78,12 @@ class ForumController extends Controller
         ])->first();
         if($cek == null){
             ForumVote::create($request->all());
-            return redirect()->back(); 
+            return ModalStaticHelpers::redirect_success_with_title('Vote Postingan','Berhasil vote');
         }else{
             // dd('ada isi');
             if($cek->type == $request->type){
-                dd('udah vote');
+                // dd('udah vote');
+                return ModalStaticHelpers::redirect_warning_with_title('Vote Postingan','Kamu sudah vote postingan ini');
             }else{
                 // dd('ganti vote');
                 ForumVote::where([
@@ -88,7 +92,7 @@ class ForumController extends Controller
                 ])->update([
                     'type' => $request->type,
                 ]);
-                return redirect()->back();
+                return ModalStaticHelpers::redirect_success_with_title('Vote Postingan','Berhasil vote');
             }
         }
     }
@@ -102,11 +106,11 @@ class ForumController extends Controller
         ])->first();
         if($cek == null){
             KomentarForumVote::create($request->all());
-            return redirect()->back(); 
+            return ModalStaticHelpers::redirect_success_with_title('Vote Komentar','Berhasil vote');
         }else{
             // dd('ada isi');
             if($cek->type == $request->type){
-                dd('udah vote');
+                return ModalStaticHelpers::redirect_warning_with_title('Vote Komentar','Kamu sudah vote komentar ini');
             }else{
                 // dd('ganti vote');
                 KomentarForumVote::where([
@@ -115,7 +119,7 @@ class ForumController extends Controller
                 ])->update([
                     'type' => $request->type,
                 ]);
-                return redirect()->back();
+                return ModalStaticHelpers::redirect_success_with_title('Vote Komentar','Berhasil vote');
             }
         }
     }

@@ -331,4 +331,5 @@
 @endsection
 @section('js')
   <script src="{{asset('js/upload-image.js')}}"></script>
+  @include('js/forum-alert')
 @endsection

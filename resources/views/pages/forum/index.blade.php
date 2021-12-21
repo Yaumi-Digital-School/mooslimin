@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 @endsection
 @section('content')
+
     <div class="container py-5">
       <div class="row py-5">
         <div class="col-lg-10 mx-auto">
@@ -13,6 +14,7 @@
           <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#exampleModal">
             <i class="fas fa-plus"></i> Buat Postingan
           </button>
+
 
         </div>
         <div class="col-lg-10 mx-auto py-4">
@@ -251,7 +253,13 @@
               <form action="{{route('forum.store')}}" method="POST" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <textarea name="desc" id="desc" cols="30" rows="7" class="form-control"></textarea>
-                <input type="file" name="image" id="image" class="form-control-file mt-3">
+                <div class="mt-3 input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm">
+                  <input id="upload" name="image" type="file" onchange="readURL(this);" class="form-control border-0">
+                  <label id="upload-label" for="upload" class="font-weight-light text-muted">Pilih Gambar</label>
+                  <div class="input-group-append">
+                      <label for="upload" class="btn btn-light m-0 rounded-pill px-4"> <i class="fa fa-cloud-upload mr-2 text-muted"></i><small class="text-uppercase font-weight-bold text-muted">Choose file</small></label>
+                  </div>
+                </div>
                 <div class="mt-3">
                   <button type="submit" class="btn btn-primary w-100">Posting</button>
                 </div>
@@ -264,4 +272,8 @@
         </div>
       </div>
     </div>
+@endsection
+@section('js')
+  <script src="{{asset('js/upload-image.js')}}"></script>
+  @include('js/forum-alert')
 @endsection
