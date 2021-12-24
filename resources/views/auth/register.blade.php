@@ -10,9 +10,11 @@
                     <p class="font-inter text-sm text-[#9797AA]"> Daftar untuk dapat bergabung dengan forum </p>
                 </div>
                 <div class="font-inter p-10 space-y-2 ml-7">
-                    <form action="">
+                    <form method="POST" action="{{ route('register') }}">
+                        {{ csrf_field() }}
                         <div class="">
                             <div>
+                                
                                 <label class="block" for="name">Nama Lengkap <span class="text-red-500">*</span></label>
                                         <input type="text" placeholder="Nama Lengkap"
                                             class="w-full text-base  px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600" required>
@@ -26,6 +28,7 @@
                                 <label class="block">Password <span class="text-red-500">*</span></label>
                                         <input type="password" placeholder="Password"
                                             class="w-full text-base  px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600" required>
+       
                             </div>
 
                             <div class="flex items-center my-5">
@@ -42,6 +45,8 @@
                                 <button class="w-full mb-5 px-6 py-2 mt-4 text-white bg-primary-500 rounded-lg hover:bg-primary-900">Daftar</button>
                                 <p class="font-normal text-sm">Sudah punya akun? <a href="/login" class="text-sm font-semibold text-primary-500 hover:underline">Masuk</a> </p>
                             </div>
+
+                    </form>
                 </div>
             </div>
         </div>

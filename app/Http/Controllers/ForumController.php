@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Forum;
+use App\Models\ForumVote;
+use App\Models\KomentarForum;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class ForumController extends Controller
 {
@@ -13,7 +18,13 @@ class ForumController extends Controller
      */
     public function index()
     {
-        return view('pages.forum.index');
+        $count = KomentarForum::count();
+        $upvote = ForumVote::where('type','upvote')->sum('value');
+        $downvote = ForumVote::where('type','downvote')->sum('value');
+        // dd($downvote);
+        // dd($count->count());
+        $forums = Forum::orderBy('created_at','desc')->get();
+        return view('pages.forum.index',compact('forums','count','upvote','downvote'));
     }
 
     /**
@@ -34,7 +45,51 @@ class ForumController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $forum = new Forum;
+        // $forum->title = $request->title;
+        // $forum->slug = Str::slug($request->title);
+        $forum->user_id = Auth::user()->id;
+        $forum->desc = $request->desc;
+
+        if($request->hasFile('image')){
+            $request->file('image')->move('img/forum/', $request->file('image')->getClientOriginalName());
+            $forum->image = $request->file('image')->getClientOriginalName();
+        }
+        $forum->save();
+        return redirect()->route('forum.index');
+    }
+
+    public function add_comment(Request $request){
+        $request->request->add(['user_id' => auth()->user()->id]);
+        KomentarForum::create($request->all());
+        return redirect()->back();
+    }
+    
+    public function forum_vote(Request $request){
+        $request->request->add(['user_id' => auth()->user()->id]);
+        // dd($request->type);
+        $cek = ForumVote::where([
+            ['user_id',auth()->user()->id],
+            ['forum_id',$request->forum_id]
+        ])->first();
+        if($cek == null){
+            ForumVote::create($request->all());
+            return redirect()->back(); 
+        }else{
+            // dd('ada isi');
+            if($cek->type == $request->type){
+                dd('udah vote');
+            }else{
+                // dd('ganti vote');
+                ForumVote::where([
+                    ['user_id',auth()->user()->id],
+                    ['forum_id',$request->forum_id]
+                ])->update([
+                    'type' => $request->type,
+                ]);
+                return redirect()->back();
+            }
+        }
     }
 
     /**
