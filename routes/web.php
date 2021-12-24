@@ -17,7 +17,7 @@ use AlesZatloukal\GoogleSearchApi\GoogleSearchApi;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    // return view('welcome');
     $api = new GoogleSearchApi();
     dd($api->getResults('shalat'));
 })->name('home');
