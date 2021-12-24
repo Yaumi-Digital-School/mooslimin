@@ -3,6 +3,7 @@
 use App\Http\Controllers\ForumController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use AlesZatloukal\GoogleSearchApi\GoogleSearchApi;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +18,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+    // $api = new GoogleSearchApi();
+    // dd($api->getResults('shalat'));
 })->name('home');
 
 Route::group(['middleware' => ['auth','checkRole:admin,user']], function(){

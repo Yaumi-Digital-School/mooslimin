@@ -204,7 +204,7 @@
                                             style="width: 50px" alt="">
                                             <div class="">
                                                 <div class="">
-                                                    <b style="font-size: 1.2rem">Nama</b>
+                                                    <b style="font-size: 1.2rem">{{Auth::user()->name}}</b>
                                                 </div>
                                                 <div>Lihat Profil Anda</div>
                                             </div>
