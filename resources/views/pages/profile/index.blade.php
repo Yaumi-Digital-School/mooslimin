@@ -1,12 +1,26 @@
 @extends('layouts.app')
 @section('title')
-    Forum
+    Profile
 @endsection
 @section('css')
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 @endsection
 @section('content')
-
+    <div class="container mt-5">
+      <div class="row mt-5 pt-5">
+        <div class="col-lg-10 mx-auto">
+          <div class="d-flex justify-content-center align-items-center">
+            <img src="{{Auth::user()->get_img_avatar()}}" class="rounded-circle mr-3" style="width: 9%" alt="">
+            <div class="">
+                <div class="">
+                    <b style="font-size: 1.2rem">{{Auth::user()->name}}</b>
+                </div>
+                <div><button type="button" data-toggle="modal" data-target="#profil" class="btn btn-sm btn-outline-success rounded-1">Edit Profil</button></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="container py-5">
       <div class="row py-5">
         <div class="col-lg-10 mx-auto">
@@ -14,7 +28,6 @@
           <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#exampleModal">
             <i class="fas fa-plus"></i> Buat Postingan
           </button>
-
 
         </div>
         <div class="col-lg-10 mx-auto py-4">
@@ -102,7 +115,7 @@
               <img src="{{$komentar->user->get_img_avatar()}}" class="rounded-circle mr-3 d-flex align-self-baseline" style="width: 4%" alt="">
               <div class="w-100">
                 <div class="">
-                  <span><b>{{$komentar->user->name}}</b><span style="color: gray"> . {{Carbon\Carbon::parse($komentar->created_at)->IsoFormat('dddd MMMM YYYY, LT A')}}</span></span>
+                  <span><b>{{$komentar->user->name}}</b><span style="color: gray"> . {{Carbon\Carbon::parse($komentar->created_at)->IsoFormat('d MMMM YYYY')}}</span></span>
                 </div>
                 <div class="">
                   <p class="font-weight-bold">
@@ -237,17 +250,10 @@
           </div>
           <div class="modal-body">
             <div class="d-flex align-items-center">
-              @auth
-                <img src="{{Auth::user()->get_img_avatar()}}" class="rounded-circle mr-3" style="width: 7%" alt="">
-                <div class="">
-                    <div>{{Auth::user()->name}} Memposting</div>
-                </div>              
-              @else
-                <img src="{{asset('img/umum/avatar.png')}}" class="rounded-circle mr-3" style="width: 7%" alt="">
-                <div class="">
-                    <div>Anda Memposting</div>
-                </div>
-              @endauth
+              <img src="{{Auth::user()->get_img_avatar()}}" class="rounded-circle mr-3" style="width: 7%" alt="">
+              <div class="">
+                  <div>{{Auth::user()->name}} Memposting</div>
+              </div>
             </div>
             <div class="mt-3">
               <form action="{{route('forum.store')}}" method="POST" enctype="multipart/form-data">
@@ -260,8 +266,58 @@
                       <label for="upload" class="btn btn-light m-0 rounded-pill px-4"> <i class="fa fa-cloud-upload mr-2 text-muted"></i><small class="text-uppercase font-weight-bold text-muted">Choose file</small></label>
                   </div>
                 </div>
+                {{-- <input type="file" name="image" id="image" class="form-control-file mt-3"> --}}
                 <div class="mt-3">
                   <button type="submit" class="btn btn-primary w-100">Posting</button>
+                </div>
+              </form>
+            </div>
+          </div>
+          {{-- <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div> --}}
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Profil -->
+    <div class="modal fade" id="profil" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div>
+            <div class=" d-flex align-items-center justify-content-center">
+              <h5 class="modal-title mt-2" id="exampleModalLabel">Edit Profil</h5>
+              <div class="d-block justify-content-end">
+                {{-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button> --}}
+              </div>
+            </div>
+          </div>
+          <div class="modal-body">
+            <div class="d-flex justify-content-center align-items-center">
+              <img src="{{Auth::user()->get_img_avatar()}}" class="rounded-circle" style="width: 14%" alt="">
+            </div>
+            <div class="mt-3 text-center">Edit Profil</div>
+
+            <div>
+              <form action="{{route('profile.store')}}" method="POST" enctype="multipart/form-data">
+                {{ csrf_field() }}
+                <!-- Upload image input-->
+                <input id="oldimg" name="oldimg" type="text" class="form-control d-none" value="{{Auth::user()->avatar}}">
+                <div class="input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm">
+                  <input id="upload" name="upload" type="file" onchange="readURL(this);" class="form-control border-0">
+                  <label id="upload-label" for="upload" class="font-weight-light text-muted">Edit Profil</label>
+                  <div class="input-group-append">
+                      <label for="upload" class="btn btn-light m-0 rounded-pill px-4"> <i class="fa fa-cloud-upload mr-2 text-muted"></i><small class="text-uppercase font-weight-bold text-muted">Choose file</small></label>
+                  </div>
+                </div>
+                <div>
+                  <label>Nama Lengkap</label>
+                  <input type="text" class="form-control text-muted" name="name" id="name" value="{{Auth::user()->name}}">
+                </div>
+                <div class="mt-3">
+                  <button type="submit" class="btn btn-success w-100">Posting</button>
                 </div>
               </form>
             </div>
