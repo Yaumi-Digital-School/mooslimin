@@ -8,7 +8,7 @@
                           islami</span> dari sumber <span style="color: #22D670">terpercaya</span>"</i></h1>
           </div>
       </div>
-      <div class="row" style="margin-bottom: 200px">
+      <div class="row mb-5" style="margin-bottom: 200px">
           <div class="col-lg-12 mb-32">
               <div class="m-20" style="padding-top: 50px;">
                   <div class="gcse-search" data-gname="storesearch"></div>
