@@ -18,8 +18,8 @@ use AlesZatloukal\GoogleSearchApi\GoogleSearchApi;
 
 Route::get('/', function () {
     return view('welcome');
-    // $api = new GoogleSearchApi();
-    // dd($api->getResults('shalat'));
+    $api = new GoogleSearchApi();
+    dd($api->getResults('shalat'));
 })->name('home');
 
 Route::group(['middleware' => ['auth','checkRole:admin,user']], function(){
