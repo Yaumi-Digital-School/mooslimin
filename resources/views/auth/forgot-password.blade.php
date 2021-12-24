@@ -9,14 +9,23 @@
             <h1 class="text-3xl text-center font-bold">Lupa Password</h1>
 
            <div class="mt-20">
-                <label class="block" for="email">Email
-                    <span class="text-red-500">*</span>
+                <label class="block" for="email">
+                    Email
+                    <span class="text-red-500">
+                        *
+                    </span>
                 </label>
                 <input 
-                    type="text" 
+                    type="email" 
+                    name="email"
                     placeholder="Email"
                     class="w-full text-base px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600" 
                     required>
+
+                @if($errors->has('email'))
+                    <span class="text-red-500">{{$errors->first('email')}}</span>    
+                @endif
+                                
            </div>
 
             <button class="w-full text-base mb-5 px-6 py-2 mt-8 text-white bg-primary-500 rounded-lg hover:bg-primary-900">Request Password</button>

@@ -15,16 +15,40 @@
                         <div class="">
                             <div>
 
-                                <label class="block" for="email">Email<span class="text-red-500">*</span></label>
-                                        <input type="text" placeholder="Email"
+                                <label class="block" for="email">
+                                    Email
+                                    <span class="text-red-500">
+                                        *
+                                    </span>
+                                </label>
+                                <input type="email" 
+                                        placeholder="Email"
                                         name="email"
-                                            class="w-full text-base  px-4 py-2 m t-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600" required>
+                                        class="w-full text-base  px-4 py-2 m t-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600" 
+                                        required>
+                                
+                                @if($errors->has('email'))
+                                    <span class="text-red-500">{{$errors->first('email')}}</span>    
+                                @endif
+                                
                             </div>
                             <div class="mt-4">
-                                <label class="block">Password <span class="text-red-500">*</span></label>
-                                        <input type="password" placeholder="Password"
+                                
+                                <label class="block">
+                                    Password 
+                                    <span class="text-red-500">
+                                        *
+                                    </span></label>
+                                <input type="password" 
+                                        placeholder="Password"
                                         name="password"
-                                            class="w-full text-base  px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600" required>
+                                        class="w-full text-base  px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600" 
+                                        required>
+
+                                @if($errors->has('password'))
+                                    <span class="text-red-500">{{$errors->first('password')}}</span>    
+                                @endif
+                                
                             </div>
                             <div class="flex items-center justify-between my-5">
                                 <div class="flex items-center space-x-2 ">

@@ -42,7 +42,7 @@
                                     </span>
                                 </label>
                                 <input 
-                                    type="text" 
+                                    type="email" 
                                     placeholder="Email"
                                     name="email"
                                     class="w-full text-base  px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600" 
