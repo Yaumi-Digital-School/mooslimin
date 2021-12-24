@@ -2,6 +2,10 @@
     @section('title')
     Muslim Tool
     @endsection
+
+    {{-- @if($errors->any())
+    <script>alert('{{$errors->first()}}')</script>
+    @endif --}}
     <div class="flex overflow-x-hidden w-screen">
         <div form method="POST" action="{{ route('register') }}" class="flex w-7/12 flex-col flex-none">
             @csrf
@@ -14,31 +18,67 @@
                         {{ csrf_field() }}
                         <div class="">
                             <div>
+                                <label class="block" for="name">
+                                    Nama Lengkap 
+                                    <span class="text-red-500">
+                                        *
+                                    </span>
+                                </label>
+                                <input type="text" placeholder="Nama Lengkap"
+                                    name="name"
+                                    class="w-full text-base  px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600" 
+                                    required/>
+                                    
+                                @if($errors->has('name'))
+                                    <span class="text-red-500">{{$errors->first('name')}}</span>    
+                                @endif
                                 
-                                <label class="block" for="name">Nama Lengkap <span class="text-red-500">*</span></label>
-                                        <input type="text" placeholder="Nama Lengkap"
-                                            class="w-full text-base  px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600" required>
                             </div>
                             <div>
-                                <label class="block" for="email">Email <span class="text-red-500">*</span></label>
-                                        <input type="text" placeholder="Email"
-                                            class="w-full text-base  px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600" required>
+                                <label class="block" for="email">
+                                    Email 
+                                    <span class="text-red-500">
+                                        *
+                                    </span>
+                                </label>
+                                <input 
+                                    type="text" 
+                                    placeholder="Email"
+                                    name="email"
+                                    class="w-full text-base  px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600" 
+                                    required/>
+
+                                @if($errors->has('email'))
+                                    <span class="text-red-500">{{$errors->first('email')}}</span>    
+                                @endif
                             </div>
                             <div class="mt-4">
-                                <label class="block">Password <span class="text-red-500">*</span></label>
-                                        <input type="password" placeholder="Password"
-                                            class="w-full text-base  px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600" required>
-       
+                                <label class="block">
+                                    Password 
+                                    <span class="text-red-500">
+                                        *
+                                    </span>
+                                </label>
+                                <input 
+                                    type="password" 
+                                    placeholder="Password"
+                                    name="password"
+                                    class="w-full text-base  px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600" 
+                                    required/>
+
+                                @if($errors->has('email'))
+                                    <span class="text-red-500">{{$errors->first('email')}}</span>    
+                                @endif
                             </div>
 
                             <div class="flex items-center my-5">
                                 <div class="flex items-center space-x-2 ">
-                                    <input id="ingat_akun" name="remember" type="checkbox"/>
+                                    <input id="ingat_akun" name="remember" type="checkbox" required/>
                                     <label class="font-normal text-sm" for="ingat_akun"> Saya menyetujui  </label> 
                                 </div>
                                 
                                 
-                                <label class="ml-1 text-sm font-semibold">Syarat dan Ketentuan</label>    
+                                <label class="ml-1 text-sm font-semibold">Syarat dan Ketentuan</label >    
                             </div>
                             
                             <div class="flex flex-col items-baseline justify-between mt-10">

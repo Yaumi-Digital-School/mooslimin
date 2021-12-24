@@ -17,11 +17,13 @@
 
                                 <label class="block" for="email">Email<span class="text-red-500">*</span></label>
                                         <input type="text" placeholder="Email"
+                                        name="email"
                                             class="w-full text-base  px-4 py-2 m t-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600" required>
                             </div>
                             <div class="mt-4">
                                 <label class="block">Password <span class="text-red-500">*</span></label>
                                         <input type="password" placeholder="Password"
+                                        name="password"
                                             class="w-full text-base  px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600" required>
                             </div>
                             <div class="flex items-center justify-between my-5">
