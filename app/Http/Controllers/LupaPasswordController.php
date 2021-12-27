@@ -16,7 +16,7 @@ class LupaPasswordController extends Controller
         if($cek != null){
             // dd('ada');
             dispatch(new LupaPasswordJob($request->email));
-            return ModalStaticHelpers::redirect_success_with_title('Reset Password'," $request->email Anda ");
+            return ModalStaticHelpers::redirect_success_with_title('Reset Password',"Silahkan cek email Anda (Jika tidak di pesan masuk, silahkan cek di spam)");
         }else{
             // dd('ndak ada');
             return ModalStaticHelpers::redirect_error_with_title('Reset Password','tidak ada email tersebut');
