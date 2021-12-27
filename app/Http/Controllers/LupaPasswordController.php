@@ -7,6 +7,8 @@ use App\Jobs\LupaPasswordJob;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class LupaPasswordController extends Controller
 {
@@ -23,9 +25,35 @@ class LupaPasswordController extends Controller
         }
     }
 
-    public function update($email){
+    public function edit($email){
         $email = Crypt::decrypt($email);
 
         return view('auth.reset-password',compact('email'));
+    }
+
+    public function update(Request $request){
+        $rules = [
+            'email'                => ['required'],
+            'password_baru'        => ['required'],
+            'password_konfirmasi'  => ['same:password_baru'],
+        ];
+ 
+        $messages = [
+            'email.required'           => 'Email wajib diisi.',
+            'password_baru.required'   => 'Password baru wajib diisi.',
+            'password_konfirmasi.same' => 'Password konfirmasi tidak sama.',
+        ];
+ 
+        $validator = Validator::make($request->all(), $rules, $messages);
+         
+        if($validator->fails()){
+            return redirect()->back()->withErrors($validator)->withInput($request->all());
+        }
+
+        User::where('email',$request->email)->update([
+            'password' => Hash::make($request->password_baru),
+        ]);
+
+        return redirect('/login');
     }
 }

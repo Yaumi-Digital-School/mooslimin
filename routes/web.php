@@ -44,7 +44,8 @@ Route::get('/lupa-password', function () {
     return view('auth.forgot-password');
 })->name('reset.password.index');
 Route::post('/reset/password', [LupaPasswordController::class, 'reset'])->name('reset.password.store');
-Route::get('/reset/{email}/update', [LupaPasswordController::class, 'update'])->name('reset.password.update');
+Route::get('/reset/{email}/edit', [LupaPasswordController::class, 'edit'])->name('reset.password.edit');
+Route::post('/reset/update', [LupaPasswordController::class, 'update'])->name('reset.password.update');
 
 Route::group(['middleware' => ['auth','checkRole:admin,user']], function(){
     // Route::get('/dashboard', function () {
