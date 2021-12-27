@@ -1,4 +1,8 @@
-<div style="position: fixed; left: 0; bottom: 0; width: 100%;">
+<div style="  position: absolute;
+width: 100%;
+height: 100px;
+bottom: 0;
+overflow: hidden;">
 
 
   <!--Waves Container-->

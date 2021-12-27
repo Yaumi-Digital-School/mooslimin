@@ -18,8 +18,22 @@ use AlesZatloukal\GoogleSearchApi\GoogleSearchApi;
 
 Route::get('/', function () {
     return view('welcome');
+    // $parameters = array(
+    //     'start' => 1,// start from the 10th results,
+    //     'num' => 10, // number of results to get, 10 is maximum and also default value
+    //     'searchType' => 'image', // number of results to get, 10 is maximum and also default value
+    // );
     // $api = new GoogleSearchApi();
-    // dd($api->getResults('shalat'));
+    // $res = $api->getResults('shalat',$parameters);
+    // $info = $api->getRawResult();
+    // foreach($res as $r){
+    //     echo $r->title;
+    //     echo '<br>';
+    //     echo '<img src="'.$r->link.'" alt="" srcset="">';
+    //     echo '<br>';
+    //     // echo $r->pagemap->imageobject->url;
+    // }
+    // dd($info);
 })->name('home');
 
 Route::group(['middleware' => ['auth','checkRole:admin,user']], function(){

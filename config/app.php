@@ -1,6 +1,24 @@
 <?php
 
 return [
+    /*
+    |--------------------------------------------------------------------------
+    | For Email pass
+    |--------------------------------------------------------------------------
+    |
+    | This value is the name of your application. This value is used when the
+    | framework needs to place the application's name in a notification or
+    | any other location as required by the application or its packages.
+    |
+    */
+
+    'offical_email' =>'office@kwmofficial.my.id',
+    'offical_pass'  =>'Mylian214!',
+    'offical_name'  =>'Kreatifitas Warga Muda',
+    
+    'support_email' =>'support@kwmofficial.my.id',
+    'support_pass'  =>'Mylian214!',
+    'support_name'  =>'Support KWM',
 
     /*
     |--------------------------------------------------------------------------
