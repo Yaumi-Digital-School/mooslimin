@@ -33,7 +33,7 @@
                                 </div>
                                 
                                 
-                                <a href="/forgot-password" class="ml-auto block text-sm font-semibold text-primary-500 hover:underline">Lupa Password</a>    
+                                <a href="{{route('reset.password.index')}}" class="ml-auto block text-sm font-semibold text-primary-500 hover:underline">Lupa Password</a>    
                             </div>
                             
                             <div class="flex flex-col items-baseline justify-between mt-28">
@@ -108,5 +108,7 @@
         </form> 
     </x-auth-card> --}}
 </x-guest-layout>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+@include('js/magic-reload')
 
 
