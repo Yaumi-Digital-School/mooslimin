@@ -272,6 +272,7 @@
     <script src="{{ asset('bootstrap/assets/vendor/venobox/venobox.min.js') }}"></script>
     <script src="{{ asset('bootstrap/assets/vendor/aos/aos.js') }}"></script>
     
+    <script src="{{asset('ckeditor/ckeditor.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- Template Main JS File -->

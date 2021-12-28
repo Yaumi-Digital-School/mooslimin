@@ -68,9 +68,9 @@
             </div>
           </div>
           <div class="py-3">
-            <p class="font-weight-bold">
-              {{$forum->desc}}
-            </p>
+            <article class="font-bold">
+              {!!$forum->desc!!}
+            </article>
             <div>
               @if ($forum->image != null)
               <img src="{{$forum->get_img_forum()}}" class="" style="width: 25%" alt="">
@@ -277,4 +277,5 @@
   <script src="{{asset('js/upload-image.js')}}"></script>
   @include('js/forum-alert')
   @include('js/magic-reload')
+  @include('js/ckeditor-desc')
 @endsection
