@@ -2,18 +2,8 @@
     @section('title')
     Muslim Tool
     @endsection
-
-
-
-
-
-
-
-
-
-
     
-    @if(!isset($status))
+    @if(Session::has('done'))
     <div class="h-screen w-screen flex flex-col justify-center items-center font-inter">
         <img src="/img/umum/Envelope.png">
         <div class="mt-10 mb-7">
@@ -23,7 +13,7 @@
             <p>Kami telah mengirim email permohonan ubah password ke email </p>
             <p>Jika tidak terkirim klik  tombol dibawah ini.</p>
         </div>
-        <button type="submit" class="w-64 text-base mb-5 px-6 py-2 mt-8 text-white bg-primary-500 rounded-lg hover:bg-primary-900">Kirim ulang email verifikasi</button>
+        <button onClick="window.location.reload();" class="w-64 text-base mb-5 px-6 py-2 mt-8 text-white bg-primary-500 rounded-lg hover:bg-primary-900">Kirim ulang email verifikasi</button>
        
     </div>        
     @else
