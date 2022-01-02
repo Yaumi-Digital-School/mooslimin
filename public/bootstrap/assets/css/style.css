@@ -174,7 +174,7 @@ h1, h2, h3, h4, h5, h6 {
 # Header
 --------------------------------------------------------------*/
 #header {
-  background: #fff;
+  background: #18d26e;
   border-bottom: 2px solid #eceefe;
   transition: all 0.5s;
   z-index: 997;
@@ -193,7 +193,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #header .logo a {
-  color: #2d405f;
+  color: white;
 }
 
 #header .logo img {
@@ -204,6 +204,7 @@ h1, h2, h3, h4, h5, h6 {
 # Navigation Menu
 --------------------------------------------------------------*/
 /* Desktop Navigation */
+
 .nav-menu ul {
   margin: 0;
   padding: 0;
@@ -223,7 +224,7 @@ h1, h2, h3, h4, h5, h6 {
 .nav-menu a {
   display: block;
   position: relative;
-  color: #2d405f;
+  color: white;
   transition: 0.3s;
   font-size: 14px;
   font-family: "Krub", sans-serif;
@@ -231,7 +232,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .nav-menu a:hover, .nav-menu .active > a, .nav-menu li:hover > a {
-  color: #22D670;
+  /* color: #18d26e; */
+  color: white;
+  /* background-color: white; */
 }
 
 .nav-menu .drop-down ul {
@@ -269,7 +272,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .nav-menu .drop-down ul a:hover, .nav-menu .drop-down ul .active > a, .nav-menu .drop-down ul li:hover > a {
-  color: #22D670;
+  color: #18d26e;
 }
 
 .nav-menu .drop-down > a:after {
@@ -315,8 +318,8 @@ h1, h2, h3, h4, h5, h6 {
 /* Get Startet Button */
 .get-started-btn {
   margin-left: 25px;
-  background: #22D670;
-  color: #e2e5fe;
+  background: white;
+  color: #2ad675;
   border-radius: 5px;
   padding: 8px 25px 10px 25px;
   white-space: nowrap;
@@ -329,8 +332,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .get-started-btn:hover {
-  background: #2ad675;
-  color: #fff;
+  background: white;
+  color: #2ad675;
 }
 
 @media (max-width: 768px) {
