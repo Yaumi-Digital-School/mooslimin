@@ -194,8 +194,13 @@
                         <li
                             class="drop-down {{ request()->is('profile') ? 'active' : (request()->is('/lain') ? 'active' : '') }}">
                             {{-- <a href="">Profile</a> --}}
-                            <img src="{{ Auth::user()->get_img_avatar() }}" class="d-inline rounded-circle mr-5"
-                                            style="width: 30px" alt="">
+                            <div class="d-flex justify-items-start">
+                                <span class="name-user mr-2">{{Auth::user()->name}}</span>
+                                <span style="margin-top: -5px">
+                                    <img src="{{ Auth::user()->get_img_avatar() }}" class="rounded-circle mr-4"
+                                                    style="margin:0; width: 30px;" alt="">
+                                </span>
+                            </div>
                             <ul>
                                 <li class="{{ request()->is('profile') ? 'active' : '' }}">
                                     <a href="{{route('profile.index')}}">

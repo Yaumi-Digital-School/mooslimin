@@ -208,6 +208,7 @@ h1, h2, h3, h4, h5, h6 {
 .nav-menu ul {
   margin: 0;
   padding: 0;
+  margin-right: 30px;
   list-style: none;
 }
 
@@ -224,6 +225,14 @@ h1, h2, h3, h4, h5, h6 {
 .nav-menu a {
   display: block;
   position: relative;
+  color: white;
+  transition: 0.3s;
+  font-size: 14px;
+  font-family: "Krub", sans-serif;
+  font-weight: 600;
+}
+
+.name-user {
   color: white;
   transition: 0.3s;
   font-size: 14px;
