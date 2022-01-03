@@ -26,7 +26,6 @@ jobs:
           envs: ENV
           script: |
             cd /var/www/mooslimin
-            sudo chmod -R 777 /var/www/mooslimin
             rm -rf .env
             printf "$ENV" >> .env
             ./.scripts/deploy.sh

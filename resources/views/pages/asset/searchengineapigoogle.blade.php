@@ -4,7 +4,7 @@
     <div class="container" style="margin-bottom: 67px">
       <div class="row py-4">
           <div class="col-lg-12 text-center">
-              <h1 class="text-gray-800" style="padding-top: 100px"><i>"Temukan <span style="color: #22D670">artikel
+              <h1 class="text-gray-800" style="padding-top: 100px"><i>"Temukan ciatt <span style="color: #22D670">artikel
                           islami</span> dari sumber <span style="color: #22D670">terpercaya</span>"</i></h1>
           </div>
       </div>
