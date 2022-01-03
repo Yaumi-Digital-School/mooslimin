@@ -28,5 +28,6 @@ jobs:
             cd /var/www/mooslimin
             rm -rf .env
             printf "$ENV" >> .env
-            chmod -R +x /var/www/mooslimin
+            chmod -R o+x /var/www/mooslimin
             ./scripts/deploy.sh
+            chmod -R o+w /var/www/mooslimin/storage
