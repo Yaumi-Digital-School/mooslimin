@@ -12,7 +12,7 @@ git pull origin main
 # Install composer dependencies
 export COMPOSER_ALLOW_SUPERUSER=1
 composer dump-autoload
-composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader
+composer install
 
 # Run database migrations
 php artisan migrate --force
