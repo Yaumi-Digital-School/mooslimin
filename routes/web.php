@@ -38,7 +38,7 @@ Route::get('/', function () {
 })->name('home');
 Route::get('/pass', function () {
     return view('pages.mail.reset-password');
-})->name('reset.password.index');
+})->name('reset.password.index.pass');
 
 Route::get('/lupa-password', function () {
     return view('auth.forgot-password');
