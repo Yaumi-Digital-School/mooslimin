@@ -28,4 +28,4 @@ jobs:
             cd /var/www/mooslimin
             rm -rf .env
             printf "$ENV" >> .env
-            ./.scripts/deploy.sh
+            ./scripts/deploy.sh
