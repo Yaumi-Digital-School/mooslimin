@@ -25,6 +25,7 @@ php artisan optimize
 
 # Compile npm assets
 npm cache clean --force
+rm -rf node_modules
 npm install
 npm run prod
 
