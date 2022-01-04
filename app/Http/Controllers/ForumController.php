@@ -24,9 +24,13 @@ class ForumController extends Controller
         $count = KomentarForum::count();
         $upvote = ForumVote::where('type','upvote')->sum('value');
         $downvote = ForumVote::where('type','downvote')->sum('value');
-        // dd($downvote);
+        // dd($upvote);
         // dd($count->count());
-        $forums = Forum::orderBy('created_at','desc')->get();
+        $forums = Forum::orderBy('count_vote','DESC')->get();
+        // $forums = Forum::with('vote')->get()->sortBy(function ($forum){
+        //     return $forum->orderBy($forum->vote()->sum('value'),'desc');
+        // });
+        // dd($forums);
         return view('pages.forum.index',compact('forums','count','upvote','downvote'));
     }
 
@@ -64,12 +68,19 @@ class ForumController extends Controller
     }
 
     public function add_comment(Request $request){
+
         $request->request->add(['user_id' => auth()->user()->id]);
         KomentarForum::create($request->all());
+        
+        $forum = Forum::find($request->forum_id);
+        $forum->count_vote += 1;
+        $forum->save();
+        
         return ModalStaticHelpers::redirect_success_with_title('Komentar','Komentar berhasil di buat');
     }
     
     public function forum_vote(Request $request){
+        $forum = Forum::find($request->forum_id);
         $request->request->add(['user_id' => auth()->user()->id]);
         // dd($request->type);
         $cek = ForumVote::where([
@@ -78,6 +89,10 @@ class ForumController extends Controller
         ])->first();
         if($cek == null){
             ForumVote::create($request->all());
+            if($request->type == 'upvote'){
+                $forum->count_vote += 1;
+                $forum->save();
+            }
             return ModalStaticHelpers::redirect_success_with_title('Vote Postingan','Berhasil vote');
         }else{
             // dd('ada isi');
@@ -92,6 +107,11 @@ class ForumController extends Controller
                 ])->update([
                     'type' => $request->type,
                 ]);
+
+                if($request->type == 'upvote'){
+                    $forum->count_vote += 1;
+                    $forum->save();
+                }
                 return ModalStaticHelpers::redirect_success_with_title('Vote Postingan','Berhasil vote');
             }
         }

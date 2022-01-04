@@ -19,6 +19,7 @@ class CreateForumTable extends Migration
             $table->text('desc');
             $table->string('image')->nullable();
             $table->string('status')->nullable()->default(1);
+            $table->string('count_vote')->nullable();
             $table->timestamps();
         });
     }

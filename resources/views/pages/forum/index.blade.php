@@ -105,7 +105,7 @@
                   <span><b>{{$komentar->user->name}}</b><span style="color: gray"> . {{Carbon\Carbon::parse($komentar->created_at)->IsoFormat('dddd MMMM YYYY, LT A')}}</span></span>
                 </div>
                 <div class="">
-                  <p class="font-weight-bold">
+                  <p class="">
                     {{$komentar->desc_comment}}
                   </p>
                 </div>
@@ -156,7 +156,7 @@
                     <span><b>{{$komentar->user->name}}</b><span style="color: gray"> . {{Carbon\Carbon::parse($komentar->created_at)->IsoFormat('dddd MMMM YYYY, LT A')}}</span></span>
                   </div>
                   <div class="">
-                    <p class="font-weight-bold">
+                    <p class="">
                       {{$komentar->desc_comment}}
                     </p>
                   </div>
