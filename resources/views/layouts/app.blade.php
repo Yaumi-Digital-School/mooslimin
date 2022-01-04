@@ -70,7 +70,9 @@
     <header id="header" class="fixed-top">
         <div class="container d-flex align-items-center">
 
-            <h1 class="logo mr-auto"><a href="index.html">Muslim Tool</a></h1>
+            <h1 class="logo mr-auto">
+                <a href="{{route('home')}}"><img src="{{asset('img/umum/mooslim-in.svg')}}" alt="" srcset=""></a>
+            </h1>
             <!-- Uncomment below if you prefer to use an image logo -->
             <!-- <a href="index.html" class="logo mr-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
@@ -194,13 +196,13 @@
                         <li
                             class="drop-down {{ request()->is('profile') ? 'active' : (request()->is('/lain') ? 'active' : '') }}">
                             {{-- <a href="">Profile</a> --}}
-                            <div class="d-flex justify-items-start">
-                                <span class="name-user mr-2">{{Auth::user()->name}}</span>
-                                <span style="margin-top: -5px">
-                                    <img src="{{ Auth::user()->get_img_avatar() }}" class="rounded-circle mr-4"
+                            <a href="">
+                                {{Auth::user()->name}}
+                                <span style="">
+                                    <img src="{{ Auth::user()->get_img_avatar() }}" class="rounded-circle"
                                                     style="margin:0; width: 30px;" alt="">
                                 </span>
-                            </div>
+                            </a>
                             <ul>
                                 <li class="{{ request()->is('profile') ? 'active' : '' }}">
                                     <a href="{{route('profile.index')}}">
