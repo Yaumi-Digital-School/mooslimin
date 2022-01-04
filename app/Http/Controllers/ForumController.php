@@ -26,7 +26,9 @@ class ForumController extends Controller
         $downvote = ForumVote::where('type','downvote')->sum('value');
         // dd($upvote);
         // dd($count->count());
-        $forums = Forum::orderBy('count_vote','DESC')->get();
+        $forums = Forum::orderBy('count_vote','DESC')
+                        ->orderBy('created_at','DESC')
+                        ->get();
         // $forums = Forum::with('vote')->get()->sortBy(function ($forum){
         //     return $forum->orderBy($forum->vote()->sum('value'),'desc');
         // });
