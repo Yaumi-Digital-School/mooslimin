@@ -147,19 +147,6 @@
                 </table>
             </td>
         </tr>
-        {{-- <tr>
-            <td bgcolor="#f4f4f4" align="center" style="padding: 30px 10px 0px 10px;">
-                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
-                    <tr>
-                        <td bgcolor="#0278AE" align="center" style="padding: 30px 30px 30px 30px; border-radius: 4px 4px 4px 4px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
-                            <h2 style="font-size: 20px; font-weight: 400; color: #ffffff; margin: 0;">Kreatifitas Warga Muda</h2>
-                            <p style="margin: 0; color: #ffffff;">Jln. Kusuma Bangsa, Krembung Dumpul, Randubango, Mojosari, Mojokerto, Jawa Timur, 61382</p>
-                            <p style="margin: 0; color: #FFE268; padding: 20px 0px 0px 0px;"><a style="color: #FFE268;" href="http://kwmofficial.herokuapp.com">Lihat Web</a></p>
-                        </td>
-                    </tr>
-                </table>
-            </td>
-        </tr> --}}
     </table>
 </body>
 

@@ -150,11 +150,6 @@
                         </a>
                       </button>
                     </form>
-                    {{-- <a href="">
-                      <span class="material-icons" style="color: gray">
-                        outlined_flag
-                      </span>
-                    </a> --}}
                   </div>
                 </div>
               </div>
@@ -201,11 +196,6 @@
                           </a>
                         </button>
                       </form>
-                      {{-- <a href="">
-                        <span class="material-icons" style="color: gray">
-                          outlined_flag
-                        </span>
-                      </a> --}}
                     </div>
                   </div>
                 </div>
@@ -229,11 +219,6 @@
 
 
 
-
-
-
-
-
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg">
@@ -242,9 +227,6 @@
             <div class=" d-flex align-items-center justify-content-center">
               <h5 class="modal-title mt-2" id="exampleModalLabel">Buat Postingan</h5>
               <div class="d-block justify-content-end">
-                {{-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button> --}}
               </div>
             </div>
           </div>
@@ -266,16 +248,12 @@
                       <label for="upload" class="btn btn-light m-0 rounded-pill px-4"> <i class="fa fa-cloud-upload mr-2 text-muted"></i><small class="text-uppercase font-weight-bold text-muted">Choose file</small></label>
                   </div>
                 </div>
-                {{-- <input type="file" name="image" id="image" class="form-control-file mt-3"> --}}
                 <div class="mt-3">
                   <button type="submit" class="btn btn-primary w-100">Posting</button>
                 </div>
               </form>
             </div>
           </div>
-          {{-- <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          </div> --}}
         </div>
       </div>
     </div>
@@ -288,9 +266,6 @@
             <div class=" d-flex align-items-center justify-content-center">
               <h5 class="modal-title mt-2" id="exampleModalLabel">Edit Profil</h5>
               <div class="d-block justify-content-end">
-                {{-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button> --}}
               </div>
             </div>
           </div>
@@ -322,9 +297,6 @@
               </form>
             </div>
           </div>
-          {{-- <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          </div> --}}
         </div>
       </div>
     </div>

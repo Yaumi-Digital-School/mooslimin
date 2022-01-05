@@ -12,9 +12,6 @@
         <form method="POST" action="{{ route('reset.password.update') }}">
             @csrf
 
-            <!-- Password Reset Token -->
-            {{-- <input type="hidden" name="token" value="{{ $request->route('token') }}"> --}}
-
             <!-- Email Address -->
             <div>
                 <x-label for="email" :value="__('Email')" />

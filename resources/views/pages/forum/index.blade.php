@@ -137,11 +137,6 @@
                         </a>
                       </button>
                     </form>
-                    {{-- <a href="">
-                      <span class="material-icons" style="color: gray">
-                        outlined_flag
-                      </span>
-                    </a> --}}
                   </div>
                 </div>
               </div>
@@ -188,11 +183,6 @@
                           </a>
                         </button>
                       </form>
-                      {{-- <a href="">
-                        <span class="material-icons" style="color: gray">
-                          outlined_flag
-                        </span>
-                      </a> --}}
                     </div>
                   </div>
                 </div>
@@ -229,9 +219,6 @@
             <div class=" d-flex align-items-center justify-content-center">
               <h5 class="modal-title mt-2" id="exampleModalLabel">Buat Postingan</h5>
               <div class="d-block justify-content-end">
-                {{-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button> --}}
               </div>
             </div>
           </div>
@@ -266,9 +253,6 @@
               </form>
             </div>
           </div>
-          {{-- <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          </div> --}}
         </div>
       </div>
     </div>
