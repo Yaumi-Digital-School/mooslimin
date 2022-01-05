@@ -3,7 +3,6 @@
 use App\Http\Controllers\ForumController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use AlesZatloukal\GoogleSearchApi\GoogleSearchApi;
 use App\Http\Controllers\LupaPasswordController;
 
 /*
@@ -19,23 +18,8 @@ use App\Http\Controllers\LupaPasswordController;
 
 Route::get('/', function () {
     return view('welcome');
-    // $parameters = array(
-    //     'start' => 1,// start from the 10th results,
-    //     'num' => 10, // number of results to get, 10 is maximum and also default value
-    //     'searchType' => 'image', // number of results to get, 10 is maximum and also default value
-    // );
-    // $api = new GoogleSearchApi();
-    // $res = $api->getResults('shalat',$parameters);
-    // $info = $api->getRawResult();
-    // foreach($res as $r){
-    //     echo $r->title;
-    //     echo '<br>';
-    //     echo '<img src="'.$r->link.'" alt="" srcset="">';
-    //     echo '<br>';
-    //     // echo $r->pagemap->imageobject->url;
-    // }
-    // dd($info);
 })->name('home');
+
 Route::get('/pass', function () {
     return view('pages.mail.reset-password');
 })->name('reset.password.index.pass');
@@ -43,19 +27,14 @@ Route::get('/pass', function () {
 Route::get('/lupa-password', function () {
     return view('auth.forgot-password');
 })->name('reset.password.index');
+
 Route::post('/reset/password', [LupaPasswordController::class, 'reset'])->name('reset.password.store');
 Route::post('/reset/password/done', [LupaPasswordController::class, 'reset_done'])->name('reset.password.store.done');
 Route::get('/reset/{email}/edit', [LupaPasswordController::class, 'edit'])->name('reset.password.edit');
 Route::post('/reset/update', [LupaPasswordController::class, 'update'])->name('reset.password.update');
+Route::get('/forum', [ForumController::class, 'index'])->name('forum.index');
 
 Route::group(['middleware' => ['auth','checkRole:admin,user']], function(){
-    // Route::get('/dashboard', function () {
-    //     return view('dashboard');
-    // })->name('dashboard');
-
-    // Reset Password
-
-
     // Profile
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
     Route::post('/profile/store', [ProfileController::class, 'store'])->name('profile.store');
@@ -67,7 +46,6 @@ Route::group(['middleware' => ['auth','checkRole:admin,user']], function(){
     Route::post('/forum/vote/comment', [ForumController::class, 'komentar_vote'])->name('komentar.vote');
 });
 
-Route::get('/forum', [ForumController::class, 'index'])->name('forum.index');
 
 
 
