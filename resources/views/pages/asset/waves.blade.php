@@ -1,5 +1,5 @@
 <!-- FOOTER -->
-    <footer class="w-100 flex-shrink-0">
+    <footer class="w-100">
         <div class="container-fluid">
             <div class="row">
                 <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
