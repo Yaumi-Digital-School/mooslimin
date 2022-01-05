@@ -16,13 +16,11 @@ class LupaPasswordController extends Controller
         $cek = User::where('email',$request->email)->first();
         $email = $request->email;
         if($cek != null){
-            // dd('ada');
             dispatch(new LupaPasswordJob($email));
             return redirect()->back()->with([
                 'done' => 'berhasil',
               ]);
         }else{
-            // dd('ndak ada');
             return ModalStaticHelpers::redirect_error_with_title('Reset Password','tidak ada email tersebut');
         }
     }
@@ -31,7 +29,6 @@ class LupaPasswordController extends Controller
         $cek = User::where('email',$request->email)->first();
         $email = $request->email;
         if($cek != null){
-            // dd('ada');
             dispatch(new LupaPasswordJob($email));
             return ModalStaticHelpers::redirect_success_with_title('Reset Password',"Silahkan cek email Anda (Jika tidak di pesan masuk, silahkan cek di spam)");
         }else{
