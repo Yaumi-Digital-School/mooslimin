@@ -11,7 +11,7 @@
         </div>
         <div class="text-center mb-6">
             <p>Kami telah mengirim email permohonan ubah password ke email </p>
-            <p>Jika tidak terkirim klik  tombol dibawah ini.</p>
+            <p>Jika tidak terkirim klik tombol dibawah ini.</p>
         </div>
         <button onClick="window.location.reload();" class="w-64 text-base mb-5 px-6 py-2 mt-8 text-white bg-primary-500 rounded-lg hover:bg-primary-900">Kirim ulang email verifikasi</button>
        

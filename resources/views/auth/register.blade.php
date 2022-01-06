@@ -6,7 +6,7 @@
     {{-- @if($errors->any())
     <script>alert('{{$errors->first()}}')</script>
     @endif --}}
-    <div class="flex overflow-x-hidden w-screen">
+    <div class="flex overflow-hidden w-screen">
         <div form method="POST" action="{{ route('register') }}" class="flex w-7/12 flex-col flex-none">
             @csrf
                 <div class="font-inter p-10 space-y-2 ml-7 mt-7">

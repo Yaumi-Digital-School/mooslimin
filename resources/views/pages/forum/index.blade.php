@@ -3,7 +3,13 @@
     Forum
 @endsection
 @section('css')
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">  
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    .dropdown-toggle::after {
+      display:none;
+    }
+  </style>
 @endsection
 @section('content')
 
@@ -44,6 +50,7 @@
                   <button type="submit" class="btn btn-link" style="text-decoration: none;">
                     <a href="" class="">
                       <span><i class="fas fa-arrow-circle-up" style="font-size: 1.4rem"></i> {{$forum->vote()->where('type','upvote')->sum('value')}}</span>
+
                     </a>
                   </button>
                 </form>
@@ -64,7 +71,15 @@
                   </button>
                 </form>
               </div>
-
+          	  <div class="dropdown">
+                <button class="btn btn-ghost dropdown-toggle" type="button"  data-toggle="dropdown" aria-haspopup="false" aria-expanded="false">
+                  <img src="/img/umum/More.png" >
+                </button>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="#">Delete</a>
+                  <a class="dropdown-item" href="#">Edit</a>
+                </div>
+              </div>
             </div>
           </div>
           <div class="py-3">
@@ -258,8 +273,12 @@
     </div>
 @endsection
 @section('js')
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   <script src="{{asset('js/upload-image.js')}}"></script>
   @include('js/forum-alert')
   @include('js/magic-reload')
   @include('js/ckeditor-desc')
+  <script>$('.dropdown-toggle').dropdown()</script>
 @endsection
