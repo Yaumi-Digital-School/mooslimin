@@ -7,7 +7,7 @@ echo "Deployment started ..."
 (php artisan down) || true
 
 # Pull latest
-git pull origin ci-add-deployment
+git pull origin master
 
 # Install composer dependencies
 export COMPOSER_ALLOW_SUPERUSER=1
