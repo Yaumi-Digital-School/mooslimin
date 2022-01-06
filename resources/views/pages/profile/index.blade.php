@@ -10,7 +10,7 @@
       <div class="row mt-5 pt-5">
         <div class="col-lg-10 mx-auto">
           <div class="d-flex justify-content-center align-items-center">
-            <img src="{{Auth::user()->get_img_avatar()}}" class="rounded-circle mr-3" style="width: 9%" alt="">
+            <img src="{{Auth::user()->get_img_avatar()}}" class="rounded-circle mr-3" style="width: 50px; height: 50px;" alt="">
             <div class="">
                 <div class="">
                     <b style="font-size: 1.2rem">{{Auth::user()->name}}</b>
@@ -38,7 +38,7 @@
           <hr>
           <div class="d-flex justify-content-between">
             <div class="d-flex align-items-center">
-              <img src="{{$forum->user->get_img_avatar()}}" class="rounded-circle mr-3" style="width: 9%" alt="">
+              <img src="{{$forum->user->get_img_avatar()}}" class="rounded-circle mr-3" style="width: 50px; height: 50px;" alt="">
               <div class="">
                   <div class="">
                       <b style="font-size: 1.2rem">{{$forum->user->name}}</b>
@@ -46,7 +46,7 @@
                   <div>{{Carbon\Carbon::parse($forum->created_at)->IsoFormat('d MMMM YYYY, LT ')}}</div>
               </div>
             </div>
-            <div class="d-flex  align-items-center">
+            <div class="d-flex align-items-center">
 
               <div class="">
                 <form action="{{route('forum.vote')}}" method="POST" enctype="multipart/form-data">
@@ -56,7 +56,9 @@
                   <input type="hidden" id="value" name="value" value="1">
                   <button type="submit" class="btn btn-link" style="text-decoration: none;">
                     <a href="" class="">
-                      <span><i class="fas fa-arrow-circle-up" style="font-size: 1.4rem"></i> {{$forum->vote()->where('type','upvote')->sum('value')}}</span>
+                      <span><i class="fas fa-arrow-circle-up" style="font-size: 1.4rem; color: #868E96;"></i> 
+                        {{$forum->vote()->where('type','upvote')->sum('value') != 0 ? $forum->vote()->where('type','upvote')->sum('value') : ''}}
+                      </span>
                     </a>
                   </button>
                 </form>
@@ -72,7 +74,9 @@
                   <input type="hidden" id="value" name="value" value="1">
                   <button type="submit" class="btn btn-link" style="text-decoration: none;">
                     <a href="" class="">
-                      <span><i class="fas fa-arrow-circle-down" style="font-size: 1.4rem"></i> {{$forum->vote()->where('type','downvote')->sum('value')}}</span>
+                      <span style="display: inline"><i class="fas fa-arrow-circle-down" style="font-size: 1.4rem; color: #868E96;"></i> 
+                        {{$forum->vote()->where('type','downvote')->sum('value') != 0 ? $forum->vote()->where('type','downvote')->sum('value') : ''}}
+                      </span>
                     </a>
                   </button>
                 </form>
@@ -95,7 +99,9 @@
           </div>
           <div class="card-body rounded-lg" style="background-color: #FAFAFA">
             <div class="d-flex justify-content-between align-items-center align-self-center">
-              <img src="{{asset('bootstrap/assets/img/user-2.jpg')}}" class="rounded-circle mr-3" style="width: 4%" alt="">
+              @if (Auth::check())
+              <img src="{{Auth::user()->get_img_avatar()}}" class="rounded-circle mr-3 d-flex align-self-baseline" style="width: 30px; height: 30px;" alt="">
+              @endif`
               <form class="w-100" action="{{route('forum.add.comment')}}" method="POST" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="input-group ">
@@ -112,13 +118,13 @@
             {{--------------------- komentar -----------------------------------------}}
             @foreach ($forum->komentar()->where('parent',0)->orderBy('created_at','desc')->limit(1)->get() as $komentar)
             <div class="d-flex align-items-center py-3">
-              <img src="{{$komentar->user->get_img_avatar()}}" class="rounded-circle mr-3 d-flex align-self-baseline" style="width: 4%" alt="">
+              <img src="{{$komentar->user->get_img_avatar()}}" class="rounded-circle mr-3 d-flex align-self-baseline" style="width: 30px; height: 30px;" alt="">
               <div class="w-100">
                 <div class="">
                   <span><b>{{$komentar->user->name}}</b><span style="color: gray"> . {{Carbon\Carbon::parse($komentar->created_at)->IsoFormat('d MMMM YYYY')}}</span></span>
                 </div>
                 <div class="">
-                  <p class="font-weight-bold">
+                  <p>
                     {{$komentar->desc_comment}}
                   </p>
                 </div>
@@ -131,11 +137,13 @@
                       <input type="hidden" id="value" name="value" value="1">
                       <button type="submit" class="btn btn-link" style="text-decoration: none;">
                         <a href="" class="">
-                          <span><i class="fas fa-arrow-circle-up" style="font-size: 1.4rem"></i> </span>
+                          <span><i class="fas fa-arrow-circle-up" style="font-size: 1.4rem; color: #868E96;"></i> </span>
                         </a>
                       </button>
                     </form>
-                    <span style="color: gray">Dukung Naik . {{$komentar->vote()->where('type','upvote')->sum('value')}}</span>
+                    <span style="color: gray">Dukung Naik . 
+                      {{$komentar->vote()->where('type','upvote')->sum('value') != 0 ? $komentar->vote()->where('type','upvote')->sum('value') : ''}}
+                    </span>
                   </div>
 
                   <div class="d-flex align-items-center">
@@ -146,7 +154,7 @@
                       <input type="hidden" id="value" name="value" value="1">
                       <button type="submit" class="btn btn-link" style="text-decoration: none;">
                         <a href="" class="">
-                          <span><i class="fas fa-arrow-circle-down" style="font-size: 1.4rem"></i> </span>
+                          <span><i class="fas fa-arrow-circle-down" style="font-size: 1.4rem; color: #868E96;"></i> </span>
                         </a>
                       </button>
                     </form>
@@ -164,7 +172,7 @@
                     <span><b>{{$komentar->user->name}}</b><span style="color: gray"> . {{Carbon\Carbon::parse($komentar->created_at)->IsoFormat('dddd MMMM YYYY, LT A')}}</span></span>
                   </div>
                   <div class="">
-                    <p class="font-weight-bold">
+                    <p>
                       {{$komentar->desc_comment}}
                     </p>
                   </div>
@@ -177,11 +185,13 @@
                         <input type="hidden" id="value" name="value" value="1">
                         <button type="submit" class="btn btn-link" style="text-decoration: none;">
                           <a href="" class="">
-                            <span><i class="fas fa-arrow-circle-up" style="font-size: 1.4rem"></i> </span>
+                            <span><i class="fas fa-arrow-circle-up" style="font-size: 1.4rem; color: #868E96;"></i> </span>
                           </a>
                         </button>
                       </form>
-                      <span style="color: gray">Dukung Naik . {{$komentar->vote()->where('type','upvote')->sum('value')}}</span>
+                      <span style="color: gray">Dukung Naik . 
+                        {{$komentar->vote()->where('type','upvote')->sum('value') != 0 ? $komentar->vote()->where('type','upvote')->sum('value') : ''}}
+                      </span>
                     </div>
   
                     <div class="d-flex align-items-center">
@@ -192,7 +202,7 @@
                         <input type="hidden" id="value" name="value" value="1">
                         <button type="submit" class="btn btn-link" style="text-decoration: none;">
                           <a href="" class="">
-                            <span><i class="fas fa-arrow-circle-down" style="font-size: 1.4rem"></i> </span>
+                            <span><i class="fas fa-arrow-circle-down" style="font-size: 1.4rem; color: #868E96;"></i> </span>
                           </a>
                         </button>
                       </form>
@@ -242,14 +252,14 @@
                 {{ csrf_field() }}
                 <textarea name="desc" id="desc" cols="30" rows="7" class="form-control"></textarea>
                 <div class="mt-3 input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm">
-                  <input id="upload" name="image" type="file" onchange="readURL(this);" class="form-control border-0">
-                  <label id="upload-label" for="upload" class="font-weight-light text-muted">Pilih Gambar</label>
+                  <input id="upload" name="image" type="file" class="form-control border-0">
+                  {{-- <label id="upload-label" for="upload" class="font-weight-light text-muted">Pilih Gambar</label>
                   <div class="input-group-append">
                       <label for="upload" class="btn btn-light m-0 rounded-pill px-4"> <i class="fa fa-cloud-upload mr-2 text-muted"></i><small class="text-uppercase font-weight-bold text-muted">Choose file</small></label>
-                  </div>
+                  </div> --}}
                 </div>
                 <div class="mt-3">
-                  <button type="submit" class="btn btn-primary w-100">Posting</button>
+                  <button type="submit" class="btn btn-success w-100">Posting</button>
                 </div>
               </form>
             </div>
@@ -264,7 +274,7 @@
         <div class="modal-content">
           <div>
             <div class=" d-flex align-items-center justify-content-center">
-              <h5 class="modal-title mt-2" id="exampleModalLabel">Edit Profil</h5>
+              <h5 class="modal-title mt-2" id="exampleModalLabel">Edit Profile</h5>
               <div class="d-block justify-content-end">
               </div>
             </div>
@@ -273,26 +283,27 @@
             <div class="d-flex justify-content-center align-items-center">
               <img src="{{Auth::user()->get_img_avatar()}}" class="rounded-circle" style="width: 14%" alt="">
             </div>
-            <div class="mt-3 text-center">Edit Profil</div>
+            <div class="mt-3 text-center">Edit Profile</div>
 
-            <div>
+            <div class="w-75 mx-auto">
               <form action="{{route('profile.store')}}" method="POST" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <!-- Upload image input-->
                 <input id="oldimg" name="oldimg" type="text" class="form-control d-none" value="{{Auth::user()->avatar}}">
                 <div class="input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm">
-                  <input id="upload" name="upload" type="file" onchange="readURL(this);" class="form-control border-0">
-                  <label id="upload-label" for="upload" class="font-weight-light text-muted">Edit Profil</label>
+                  <input id="upload" name="profile" type="file" class="form-control border-0">
+                  {{-- <input id="upload" name="profile" type="file" onchange="readProfile(this);" class="form-control border-0"> --}}
+                  {{-- <label id="profile-label" for="profile" class="font-weight-light text-muted">Pilih Gambar</label>
                   <div class="input-group-append">
-                      <label for="upload" class="btn btn-light m-0 rounded-pill px-4"> <i class="fa fa-cloud-upload mr-2 text-muted"></i><small class="text-uppercase font-weight-bold text-muted">Choose file</small></label>
-                  </div>
+                      <label for="profile" class="btn btn-light m-0 rounded-pill px-4"> <i class="fa fa-cloud-upload mr-2 text-muted"></i><small class="text-uppercase font-weight-bold text-muted">Choose file</small></label>
+                  </div> --}}
                 </div>
                 <div>
                   <label>Nama Lengkap</label>
                   <input type="text" class="form-control text-muted" name="name" id="name" value="{{Auth::user()->name}}">
                 </div>
                 <div class="mt-3">
-                  <button type="submit" class="btn btn-success w-100">Posting</button>
+                  <button type="submit" class="btn btn-success w-100">Simpan</button>
                 </div>
               </form>
             </div>
@@ -302,7 +313,8 @@
     </div>
 @endsection
 @section('js')
-  <script src="{{asset('js/upload-image.js')}}"></script>
+  {{-- <script src="{{asset('js/upload-image.js')}}"></script>
+  <script src="{{asset('js/upload-image-profile.js')}}"></script> --}}
   @include('js/forum-alert')
   @include('js/magic-reload')
   @include('js/ckeditor-desc')

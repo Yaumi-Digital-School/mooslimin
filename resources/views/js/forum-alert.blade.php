@@ -40,4 +40,17 @@
       timer: 5000,
     })
   }
+
+  var error_has_name = "{{$errors->has('name')}}";
+  var error_has_profile = "{{$errors->has('profile')}}";
+  var error_has_name_mesg = "{{ $errors->first('name') }}";
+  var error_has_profile_mesg = "{{ $errors->first('profile') }}";
+  if(error_has_name || error_has_profile){
+    Swal.fire({
+      title: 'Postingan',
+      text: error_has_name_mesg +' '+ error_has_profile_mesg,
+      icon: 'warning', 
+      timer: 5000,
+    })
+  }
 </script>

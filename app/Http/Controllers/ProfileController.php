@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\ModalStaticHelpers;
+use App\Http\Requests\EditProfileRequest;
 use App\Models\Forum;
 use App\Models\KomentarForum;
 use App\Models\User;
@@ -29,19 +31,20 @@ class ProfileController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(EditProfileRequest $request)
     {
         $p = User::find(Auth::user()->id);
         $p->name = $request->name;
 
-        if($request->hasFile('upload')){
-            $request->file('upload')->move('img/avatar/', $request->file('upload')->getClientOriginalName());
-            $p->avatar = $request->file('upload')->getClientOriginalName();
+        if($request->hasFile('profile')){
+            $request->file('profile')->move('img/avatar/', $request->file('profile')->getClientOriginalName());
+            $p->avatar = $request->file('profile')->getClientOriginalName();
             if($request->oldimg != 'default.png'){
                 File::delete('img/avatar/'.$request->oldimg);
             }
         }
         $p->save();
-        return redirect()->route('profile.index');
+        
+        return ModalStaticHelpers::redirect_success_with_title('Profile','Profile berhasil di simpan');
     }
 }
