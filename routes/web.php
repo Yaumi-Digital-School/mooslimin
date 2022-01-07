@@ -33,6 +33,7 @@ Route::post('/reset/password/done', [LupaPasswordController::class, 'reset_done'
 Route::get('/reset/{email}/edit', [LupaPasswordController::class, 'edit'])->name('reset.password.edit');
 Route::post('/reset/update', [LupaPasswordController::class, 'update'])->name('reset.password.update');
 Route::get('/forum', [ForumController::class, 'index'])->name('forum.index');
+Route::get('/profile/{id}', [ProfileController::class, 'show'])->name('profile.show');
 
 Route::group(['middleware' => ['auth','checkRole:admin,user']], function(){
     // Profile

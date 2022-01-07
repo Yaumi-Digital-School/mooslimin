@@ -10,6 +10,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use File;
+use Illuminate\Support\Facades\Crypt;
 
 class ProfileController extends Controller
 {
@@ -23,6 +24,14 @@ class ProfileController extends Controller
         $count = KomentarForum::count();
         $forums = Forum::where('user_id',Auth::user()->id)->orderBy('created_at','desc')->get();
         return view('pages.profile.index',compact('forums','count'));
+    }
+
+    public function show($id)
+    {
+        $id = Crypt::decrypt($id);
+        $user = User::find($id);
+        // dd($user);
+        return view('pages.profile.show',compact('user'));
     }
 
     /**

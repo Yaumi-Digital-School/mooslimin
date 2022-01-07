@@ -49,4 +49,8 @@ class User extends Authenticatable
 
         return asset('img/avatar/'.$this->avatar);
     }
+
+    public function forum(){
+        return $this->hasMany(Forum::class);
+    }
 }

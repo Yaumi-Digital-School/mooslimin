@@ -1,33 +1,38 @@
 @extends('layouts.app')
 @section('title')
-    Forum
+    Profile
 @endsection
-@section('css')  
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+@section('css')
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 @endsection
 @section('content')
-
-    <div class="container py-5">
-      <div class="row py-5">
+    <div class="container mt-5">
+      <div class="row mt-5 pt-5">
         <div class="col-lg-10 mx-auto">
-          <!-- Button trigger modal -->
-          <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#exampleModal">
-            <i class="fas fa-plus"></i> Buat Postingan
-          </button>
-
+          <div class="text-center">
+            <img src="{{$user->get_img_avatar()}}" class="rounded-circle" style="width: 100px; height: 100px;" alt="">
+            <div class="mt-3">
+                <div class="">
+                    <b style="font-size: 1.2rem">{{$user->name}}</b>
+                </div>
+            </div>
+          </div>
         </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row ">
         <div class="col-lg-10 mx-auto py-4">
           {{-- postingan / forum --}}
-          @foreach ($forums as $forum)
+          @foreach ($user->forum()->orderBy('created_at','DESC')->get() as $forum)
+              
           <hr>
           <div class="d-flex justify-content-between">
             <div class="d-flex align-items-center">
               <img src="{{$forum->user->get_img_avatar()}}" class="rounded-circle mr-3" style="width: 50px; height: 50px;" alt="">
               <div class="">
                   <div class="">
-                    <a href="{{route('profile.show', \Crypt::encrypt($forum->user->id))}}" style="color: black">
                       <b style="font-size: 1.2rem">{{$forum->user->name}}</b>
-                    </a>
                   </div>
                   <div>{{Carbon\Carbon::parse($forum->created_at)->IsoFormat('d MMMM YYYY, LT ')}}</div>
               </div>
@@ -60,7 +65,7 @@
                   <input type="hidden" id="value" name="value" value="1">
                   <button type="submit" class="btn btn-link" style="text-decoration: none;">
                     <a href="" class="">
-                      <span><i class="fas fa-arrow-circle-down" style="font-size: 1.4rem; color: #868E96;"></i> 
+                      <span style="display: inline"><i class="fas fa-arrow-circle-down" style="font-size: 1.4rem; color: #868E96;"></i> 
                         {{$forum->vote()->where('type','downvote')->sum('value') != 0 ? $forum->vote()->where('type','downvote')->sum('value') : ''}}
                       </span>
                     </a>
@@ -68,86 +73,87 @@
                 </form>
               </div>
               @auth
-                @if ($forum->user->id == Auth::user()->id)
-                  <div class="dropdown">
-                    <div style="cursor: pointer" role="button" id="postingan" data-toggle="dropdown" aria-expanded="false">
-                      <img src="{{asset('img/umum/3point-vertical.svg')}}" alt="">   
-                    </div>
-    
-                    <div class="dropdown-menu" aria-labelledby="postingan">
-                      <a class="dropdown-item" href="#" data-toggle="modal" data-target="#postinganeditmodal{{$forum->id}}">Edit</a>
-                      <a class="dropdown-item" href="#" data-toggle="modal" data-target="#postingandeletemodal{{$forum->id}}">Delete</a>
-                    </div>
-    
-                    <!-- Modal Edit Postingan-->
-                    <div class="modal fade" id="postinganeditmodal{{$forum->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                      <div class="modal-dialog modal-lg">
-                        <div class="modal-content">
-                          <div>
-                            <div class=" d-flex align-items-center justify-content-center">
-                              <h5 class="modal-title mt-2">Edit Postingan</h5>
-                              <div class="d-block justify-content-end">
-                              </div>
-                            </div>
-                          </div>
-                          <div class="modal-body">
-                            <div class="d-flex align-items-center">
-                              @auth
-                                <img src="{{Auth::user()->get_img_avatar()}}" class="rounded-circle mr-3" style="width: 7%" alt="">
-                                <div class="">
-                                    <div>{{Auth::user()->name}} Memposting</div>
-                                </div>              
-                              @else
-                                <img src="{{asset('img/umum/avatar.png')}}" class="rounded-circle mr-3" style="width: 7%" alt="">
-                                <div class="">
-                                    <div>Anda Memposting</div>
-                                </div>
-                              @endauth
-                            </div>
-                            <div class="mt-3">
-                              <form action="{{route('forum.update',$forum->id)}}" method="POST" enctype="multipart/form-data">
-                                {{ csrf_field() }}
-                                <textarea name="desc" id="desc-edit" cols="30" rows="7" class="form-control">{{$forum->desc}}</textarea>
-                                <div class="mt-3 input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm">
-                                  <input id="oldimg" name="oldimg" type="text" class="form-control d-none" value="{{$forum->image}}">
-                                  <input id="upload" name="image" type="file" class="form-control border-0">
-                                </div>
-                                <div class="mt-3">
-                                  <button type="submit" class="btn btn-success w-100">Simpan Posting</button>
-                                </div>
-                              </form>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <!-- Modal Hapus Postingan -->
-                    <div class="modal fade" id="postingandeletemodal{{$forum->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                      <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                          <div class="modal-body">
-                            <p class="font-weight-bold">Apakah Anda ingin menghapus Postingan Anda?</p>
-                            <p style="color: #4F5E71">Tindakan ini tidak dapat diubah, setelah Anda menghapus postingan, postingan tersebut menghilang.</p>
-                            <div class="float-right">
-                              <form action="{{route('forum.delete',$forum->id)}}" method="POST" enctype="multipart/form-data">
-                                {{ csrf_field() }}
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                                <button type="submit" class="btn btn-danger">Hapus</button>
-                              </form>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-    
+              @if ($forum->user->id == Auth::user()->id)
+                <div class="dropdown">
+                  <div style="cursor: pointer" role="button" id="postingan" data-toggle="dropdown" aria-expanded="false">
+                    <img src="{{asset('img/umum/3point-vertical.svg')}}" alt="">   
                   </div>
-                @endif
-              @endauth
+  
+                  <div class="dropdown-menu" aria-labelledby="postingan">
+                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#postinganeditmodal{{$forum->id}}">Edit</a>
+                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#postingandeletemodal{{$forum->id}}">Delete</a>
+                  </div>
+  
+                  <!-- Modal Edit Postingan-->
+                  <div class="modal fade" id="postinganeditmodal{{$forum->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                      <div class="modal-content">
+                        <div>
+                          <div class=" d-flex align-items-center justify-content-center">
+                            <h5 class="modal-title mt-2">Edit Postingan</h5>
+                            <div class="d-block justify-content-end">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="modal-body">
+                          <div class="d-flex align-items-center">
+                            @auth
+                              <img src="{{Auth::user()->get_img_avatar()}}" class="rounded-circle mr-3" style="width: 7%" alt="">
+                              <div class="">
+                                  <div>{{Auth::user()->name}} Memposting</div>
+                              </div>              
+                            @else
+                              <img src="{{asset('img/umum/avatar.png')}}" class="rounded-circle mr-3" style="width: 7%" alt="">
+                              <div class="">
+                                  <div>Anda Memposting</div>
+                              </div>
+                            @endauth
+                          </div>
+                          <div class="mt-3">
+                            <form action="{{route('forum.update',$forum->id)}}" method="POST" enctype="multipart/form-data">
+                              {{ csrf_field() }}
+                              <textarea name="desc" id="desc-edit" cols="30" rows="7" class="form-control">{{$forum->desc}}</textarea>
+                              <div class="mt-3 input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm">
+                                <input id="oldimg" name="oldimg" type="text" class="form-control d-none" value="{{$forum->image}}">
+                                <input id="upload" name="image" type="file" class="form-control border-0">
+                              </div>
+                              <div class="mt-3">
+                                <button type="submit" class="btn btn-success w-100">Simpan Posting</button>
+                              </div>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Modal Hapus Postingan -->
+                  <div class="modal fade" id="postingandeletemodal{{$forum->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                      <div class="modal-content">
+                        <div class="modal-body">
+                          <p class="font-weight-bold">Apakah Anda ingin menghapus Postingan Anda?</p>
+                          <p style="color: #4F5E71">Tindakan ini tidak dapat diubah, setelah Anda menghapus postingan, postingan tersebut menghilang.</p>
+                          <div class="float-right">
+                            <form action="{{route('forum.delete',$forum->id)}}" method="POST" enctype="multipart/form-data">
+                              {{ csrf_field() }}
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                              <button type="submit" class="btn btn-danger">Hapus</button>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+  
+                </div>
+              @endif
+            @endauth
+
             </div>
           </div>
           <div class="py-3">
-            <article class="font-bold">
+            <article>
               {!!$forum->desc!!}
             </article>
             <div>
@@ -162,8 +168,9 @@
           <div class="card-body rounded-lg" style="background-color: #FAFAFA">
             <div class="d-flex justify-content-between align-items-center align-self-center">
               @if (Auth::check())
-                <img src="{{Auth::user()->get_img_avatar()}}" class="rounded-circle mr-3 d-flex align-self-baseline" style="width: 30px; height: 30px;" alt="">
-              @endif              <form class="w-100" action="{{route('forum.add.comment')}}" method="POST" enctype="multipart/form-data">
+              <img src="{{Auth::user()->get_img_avatar()}}" class="rounded-circle mr-3 d-flex align-self-baseline" style="width: 30px; height: 30px;" alt="">
+              @endif`
+              <form class="w-100" action="{{route('forum.add.comment')}}" method="POST" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="input-group ">
                   <input type="hidden" id="forum_id" name="forum_id" value="{{$forum->id}}">
@@ -183,8 +190,9 @@
               <div class="w-100">
                 <div class="d-flex justify-content-between">
                   <div>
-                    <span><b>{{$komentar->user->name}}</b><span style="color: gray"> . {{Carbon\Carbon::parse($komentar->created_at)->IsoFormat('d MMMM YYYY, LT ')}}</span></span>
+                    <span><b>{{$komentar->user->name}}</b><span style="color: gray"> . {{Carbon\Carbon::parse($komentar->created_at)->IsoFormat('d MMMM YYYY')}}</span></span>
                   </div>
+
                   <div>
                     @auth
                       @if ($komentar->user->id == Auth::user()->id)
@@ -221,7 +229,7 @@
                   </div>
                 </div>
                 <div class="">
-                  <p class="">
+                  <p>
                     {{$komentar->desc_comment}}
                   </p>
                 </div>
@@ -241,7 +249,6 @@
                     <span style="color: gray">Dukung Naik . 
                       {{$komentar->vote()->where('type','upvote')->sum('value') != 0 ? $komentar->vote()->where('type','upvote')->sum('value') : ''}}
                     </span>
-
                     <form action="{{route('komentar.vote')}}" method="POST" enctype="multipart/form-data">
                       {{ csrf_field() }}
                       <input type="hidden" id="komentar_forum_id" name="komentar_forum_id" value="{{$komentar->id}}">
@@ -254,24 +261,18 @@
                       </button>
                     </form>
                   </div>
-
-                  <div class="d-flex align-items-center">
-
-                  </div>
                 </div>
               </div>
             </div> 
             @endforeach
-
-            {{-- komentar collapse --}}
             <div id="collapse-{{$forum->id}}" class="collapse">
               @foreach ($forum->komentar()->where('parent',0)->orderBy('created_at','desc')->skip(1)->take(3)->get() as $komentar)
               <div class="d-flex align-items-center py-3">
-                <img src="{{$komentar->user->get_img_avatar()}}" class="rounded-circle mr-3 d-flex align-self-baseline" style="width: 30px; height: 30px;" alt="">
+                <img src="{{$komentar->user->get_img_avatar()}}" class="rounded-circle mr-3 d-flex align-self-baseline" style="width: 4%" alt="">
                 <div class="w-100">
                   <div class="d-flex justify-content-between">
                     <div>
-                      <span><b>{{$komentar->user->name}}</b><span style="color: gray"> . {{Carbon\Carbon::parse($komentar->created_at)->IsoFormat('d MMMM YYYY, LT ')}}</span></span>
+                      <span><b>{{$komentar->user->name}}</b><span style="color: gray"> . {{Carbon\Carbon::parse($komentar->created_at)->IsoFormat('dddd MMMM YYYY, LT A')}}</span></span>
                     </div>
                     <div>
                       @auth
@@ -309,7 +310,7 @@
                     </div>
                   </div>
                   <div class="">
-                    <p class="">
+                    <p>
                       {{$komentar->desc_comment}}
                     </p>
                   </div>
@@ -341,10 +342,6 @@
                         </button>
                       </form>
                     </div>
-  
-                    <div class="d-flex align-items-center">
-
-                    </div>
                   </div>
                 </div>
               </div>                  
@@ -365,51 +362,8 @@
       </div>
     </div>
 
-
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <div>
-            <div class=" d-flex align-items-center justify-content-center">
-              <h5 class="modal-title mt-2" id="exampleModalLabel">Buat Postingan</h5>
-              <div class="d-block justify-content-end">
-              </div>
-            </div>
-          </div>
-          <div class="modal-body">
-            <div class="d-flex align-items-center">
-              @auth
-                <img src="{{Auth::user()->get_img_avatar()}}" class="rounded-circle mr-3" style="width: 7%" alt="">
-                <div class="">
-                    <div>{{Auth::user()->name}} Memposting</div>
-                </div>              
-              @else
-                <img src="{{asset('img/umum/avatar.png')}}" class="rounded-circle mr-3" style="width: 7%" alt="">
-                <div class="">
-                    <div>Anda Memposting</div>
-                </div>
-              @endauth
-            </div>
-            <div class="mt-3">
-              <form action="{{route('forum.store')}}" method="POST" enctype="multipart/form-data">
-                {{ csrf_field() }}
-                <textarea name="desc" id="desc" cols="30" rows="7" class="form-control"></textarea>
-                <div class="mt-3 input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm">
-                  <input id="upload" name="image" type="file" onchange="readURL(this);" class="form-control border-0">
-                </div>
-                <div class="mt-3">
-                  <button type="submit" class="btn btn-success w-100">Posting</button>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
 @endsection
 @section('js')
-  {{-- <script src="{{asset('js/upload-image.js')}}"></script> --}}
   @include('js/forum-alert')
   @include('js/magic-reload')
   @include('js/ckeditor-desc')
