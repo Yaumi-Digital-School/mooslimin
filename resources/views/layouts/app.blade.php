@@ -129,9 +129,7 @@
                                 <a href="http://istiqomah.yaumi.id/" target="_blank">
                                     <div class="d-flex align-items-center">
                                         <div class="p-2 rounded-lg mr-3" style="background-color: #F8F8F8">
-                                            <span class="material-icons" style="font-size: 2.5rem; color: #00A7A0">
-                                                monitor
-                                            </span>
+                                            <img style="width: 40px; height: 17px" src="{{asset('img/umum/istiqomah-logo.png')}}" alt="">
                                         </div>
                                         <div class="">
                                             <div class="">
