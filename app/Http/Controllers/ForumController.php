@@ -10,6 +10,7 @@ use App\Models\KomentarForum;
 use App\Models\KomentarForumVote;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use File;
 
 class ForumController extends Controller
 {
@@ -48,6 +49,29 @@ class ForumController extends Controller
         $forum->save(); 
 
         return ModalStaticHelpers::redirect_success_with_title('Postingan','Postingan berhasil di buat');
+    }
+
+    public function update($id, CreateForumRequest $request){
+        $forum = Forum::find($id);
+        $forum->desc = $request->desc;
+
+        if($request->hasFile('image')){
+            $request->file('image')->move('img/forum/', $request->file('image')->getClientOriginalName());
+            $forum->image = $request->file('image')->getClientOriginalName();
+            if($request->oldimg != 'default.png'){
+                File::delete('img/forum/'.$request->oldimg);
+            }
+        }
+        $forum->save();
+        
+        return ModalStaticHelpers::redirect_success_with_title('Profile','Profile berhasil di simpan');
+    }
+
+    public function delete($id){
+        $forum = Forum::find($id);
+        $forum->delete($forum);
+
+        return ModalStaticHelpers::redirect_success_with_title('Postingan','Postingan berhasil di hapus');
     }
 
     public function add_comment(Request $request){

@@ -81,6 +81,83 @@
                   </button>
                 </form>
               </div>
+              @auth
+              @if ($forum->user->id == Auth::user()->id)
+                <div class="dropdown">
+                  <div style="cursor: pointer" role="button" id="postingan" data-toggle="dropdown" aria-expanded="false">
+                    <img src="{{asset('img/umum/3point-vertical.svg')}}" alt="">   
+                  </div>
+  
+                  <div class="dropdown-menu" aria-labelledby="postingan">
+                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#postinganeditmodal{{$forum->id}}">Edit</a>
+                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#postingandeletemodal{{$forum->id}}">Delete</a>
+                  </div>
+  
+                  <!-- Modal Edit Postingan-->
+                  <div class="modal fade" id="postinganeditmodal{{$forum->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                      <div class="modal-content">
+                        <div>
+                          <div class=" d-flex align-items-center justify-content-center">
+                            <h5 class="modal-title mt-2">Edit Postingan</h5>
+                            <div class="d-block justify-content-end">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="modal-body">
+                          <div class="d-flex align-items-center">
+                            @auth
+                              <img src="{{Auth::user()->get_img_avatar()}}" class="rounded-circle mr-3" style="width: 7%" alt="">
+                              <div class="">
+                                  <div>{{Auth::user()->name}} Memposting</div>
+                              </div>              
+                            @else
+                              <img src="{{asset('img/umum/avatar.png')}}" class="rounded-circle mr-3" style="width: 7%" alt="">
+                              <div class="">
+                                  <div>Anda Memposting</div>
+                              </div>
+                            @endauth
+                          </div>
+                          <div class="mt-3">
+                            <form action="{{route('forum.update',$forum->id)}}" method="POST" enctype="multipart/form-data">
+                              {{ csrf_field() }}
+                              <textarea name="desc" id="desc-edit" cols="30" rows="7" class="form-control">{{$forum->desc}}</textarea>
+                              <div class="mt-3 input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm">
+                                <input id="oldimg" name="oldimg" type="text" class="form-control d-none" value="{{$forum->image}}">
+                                <input id="upload" name="image" type="file" class="form-control border-0">
+                              </div>
+                              <div class="mt-3">
+                                <button type="submit" class="btn btn-success w-100">Simpan Posting</button>
+                              </div>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Modal Hapus Postingan -->
+                  <div class="modal fade" id="postingandeletemodal{{$forum->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                      <div class="modal-content">
+                        <div class="modal-body">
+                          <p class="font-weight-bold">Apakah Anda ingin menghapus Postingan Anda?</p>
+                          <p style="color: #4F5E71">Tindakan ini tidak dapat diubah, setelah Anda menghapus postingan, postingan tersebut menghilang.</p>
+                          <div class="float-right">
+                            <form action="{{route('forum.delete',$forum->id)}}" method="POST" enctype="multipart/form-data">
+                              {{ csrf_field() }}
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                              <button type="submit" class="btn btn-danger">Hapus</button>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+  
+                </div>
+              @endif
+            @endauth
 
             </div>
           </div>

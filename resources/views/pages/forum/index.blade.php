@@ -2,14 +2,8 @@
 @section('title')
     Forum
 @endsection
-@section('css')
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">  
+@section('css')  
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  <style>
-    .dropdown-toggle::after {
-      display:none;
-    }
-  </style>
 @endsection
 @section('content')
 
@@ -36,7 +30,7 @@
                   <div>{{Carbon\Carbon::parse($forum->created_at)->IsoFormat('d MMMM YYYY, LT ')}}</div>
               </div>
             </div>
-            <div class="d-flex  align-items-center">
+            <div class="d-flex align-items-center">
 
               <div class="">
                 <form action="{{route('forum.vote')}}" method="POST" enctype="multipart/form-data">
@@ -71,15 +65,83 @@
                   </button>
                 </form>
               </div>
-          	  <div class="dropdown">
-                <button class="btn btn-ghost dropdown-toggle" type="button"  data-toggle="dropdown" aria-haspopup="false" aria-expanded="false">
-                  <img src="/img/umum/More.png" >
-                </button>
-                <div class="dropdown-menu">
-                  <a class="dropdown-item" href="#">Delete</a>
-                  <a class="dropdown-item" href="#">Edit</a>
-                </div>
-              </div>
+              @auth
+                @if ($forum->user->id == Auth::user()->id)
+                  <div class="dropdown">
+                    <div style="cursor: pointer" role="button" id="postingan" data-toggle="dropdown" aria-expanded="false">
+                      <img src="{{asset('img/umum/3point-vertical.svg')}}" alt="">   
+                    </div>
+    
+                    <div class="dropdown-menu" aria-labelledby="postingan">
+                      <a class="dropdown-item" href="#" data-toggle="modal" data-target="#postinganeditmodal{{$forum->id}}">Edit</a>
+                      <a class="dropdown-item" href="#" data-toggle="modal" data-target="#postingandeletemodal{{$forum->id}}">Delete</a>
+                    </div>
+    
+                    <!-- Modal Edit Postingan-->
+                    <div class="modal fade" id="postinganeditmodal{{$forum->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                          <div>
+                            <div class=" d-flex align-items-center justify-content-center">
+                              <h5 class="modal-title mt-2">Edit Postingan</h5>
+                              <div class="d-block justify-content-end">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="modal-body">
+                            <div class="d-flex align-items-center">
+                              @auth
+                                <img src="{{Auth::user()->get_img_avatar()}}" class="rounded-circle mr-3" style="width: 7%" alt="">
+                                <div class="">
+                                    <div>{{Auth::user()->name}} Memposting</div>
+                                </div>              
+                              @else
+                                <img src="{{asset('img/umum/avatar.png')}}" class="rounded-circle mr-3" style="width: 7%" alt="">
+                                <div class="">
+                                    <div>Anda Memposting</div>
+                                </div>
+                              @endauth
+                            </div>
+                            <div class="mt-3">
+                              <form action="{{route('forum.update',$forum->id)}}" method="POST" enctype="multipart/form-data">
+                                {{ csrf_field() }}
+                                <textarea name="desc" id="desc-edit" cols="30" rows="7" class="form-control">{{$forum->desc}}</textarea>
+                                <div class="mt-3 input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm">
+                                  <input id="oldimg" name="oldimg" type="text" class="form-control d-none" value="{{$forum->image}}">
+                                  <input id="upload" name="image" type="file" class="form-control border-0">
+                                </div>
+                                <div class="mt-3">
+                                  <button type="submit" class="btn btn-success w-100">Simpan Posting</button>
+                                </div>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Modal Hapus Postingan -->
+                    <div class="modal fade" id="postingandeletemodal{{$forum->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                          <div class="modal-body">
+                            <p class="font-weight-bold">Apakah Anda ingin menghapus Postingan Anda?</p>
+                            <p style="color: #4F5E71">Tindakan ini tidak dapat diubah, setelah Anda menghapus postingan, postingan tersebut menghilang.</p>
+                            <div class="float-right">
+                              <form action="{{route('forum.delete',$forum->id)}}" method="POST" enctype="multipart/form-data">
+                                {{ csrf_field() }}
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                                <button type="submit" class="btn btn-danger">Hapus</button>
+                              </form>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+    
+                  </div>
+                @endif
+              @endauth
             </div>
           </div>
           <div class="py-3">
@@ -333,13 +395,9 @@
                 <textarea name="desc" id="desc" cols="30" rows="7" class="form-control"></textarea>
                 <div class="mt-3 input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm">
                   <input id="upload" name="image" type="file" onchange="readURL(this);" class="form-control border-0">
-                  {{-- <label id="upload-label" for="upload" class="font-weight-light text-muted">Pilih Gambar</label>
-                  <div class="input-group-append">
-                      <label for="upload" class="btn btn-light m-0 rounded-pill px-4"> <i class="fa fa-cloud-upload mr-2 text-muted"></i><small class="text-uppercase font-weight-bold text-muted">Choose file</small></label>
-                  </div> --}}
                 </div>
                 <div class="mt-3">
-                  <button type="submit" class="btn btn-primary w-100">Posting</button>
+                  <button type="submit" class="btn btn-success w-100">Posting</button>
                 </div>
               </form>
             </div>
@@ -349,16 +407,8 @@
     </div>
 @endsection
 @section('js')
-<<<<<<< HEAD
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-  <script src="{{asset('js/upload-image.js')}}"></script>
-=======
   {{-- <script src="{{asset('js/upload-image.js')}}"></script> --}}
->>>>>>> f1a6a79634a2b704e6ecb1da829bd64579d8c20b
   @include('js/forum-alert')
   @include('js/magic-reload')
   @include('js/ckeditor-desc')
-  <script>$('.dropdown-toggle').dropdown()</script>
 @endsection
