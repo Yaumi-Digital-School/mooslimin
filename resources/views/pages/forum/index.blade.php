@@ -380,12 +380,12 @@
           <div class="modal-body">
             <div class="d-flex align-items-center">
               @auth
-                <img src="{{Auth::user()->get_img_avatar()}}" class="rounded-circle mr-3" style="width: 7%" alt="">
+                <img src="{{Auth::user()->get_img_avatar()}}" class="rounded-circle mr-3" style="width: 30px; height: 30px;" alt="">
                 <div class="">
                     <div>{{Auth::user()->name}} Memposting</div>
                 </div>              
               @else
-                <img src="{{asset('img/umum/avatar.png')}}" class="rounded-circle mr-3" style="width: 7%" alt="">
+                <img src="{{asset('img/umum/avatar.png')}}" class="rounded-circle mr-3" style="width: 30px; height: 30px;" alt="">
                 <div class="">
                     <div>Anda Memposting</div>
                 </div>

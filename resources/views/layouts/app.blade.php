@@ -114,9 +114,7 @@
                                 <a href="http://kuislam.yaumi.id/" target="_blank">
                                     <div class="d-flex align-items-center">
                                         <div class="p-2 rounded-lg mr-3" style="background-color: #F8F8F8">
-                                            <span class="material-icons" style="font-size: 2.5rem; color: #6DAF2B">
-                                                quiz
-                                            </span>
+                                            <img style="width: 40px; height: 40px" src="{{asset('img/umum/kuislam-logo.png')}}" alt="">
                                         </div>
                                         <div class="">
                                             <div class="">
