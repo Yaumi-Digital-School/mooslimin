@@ -7,6 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title')</title>
 
+    <link rel="icon" type="image/png" sizes="16x16" href="{{asset('img/umum/favicon.ico')}}">
+
     <!-- Vendor CSS Files -->
     <link href="{{ asset('bootstrap/assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('bootstrap/assets/vendor/icofont/icofont.min.css') }}" rel="stylesheet">
@@ -80,13 +82,11 @@
                                 <a href="http://hasanah.yaumi.id/" target="_blank">
                                     <div class="d-flex align-items-center">
                                         <div class="p-2 rounded-lg mr-3" style="background-color: #F8F8F8">
-                                            <span class="material-icons" style="font-size: 2.5rem; color: #F9CA0E">
-                                                fact_check
-                                            </span>
+                                            <img style="width: 40px; height: 17px" src="{{asset('img/umum/hasanah-logo.png')}}" alt="">
                                         </div>
                                         <div class="">
                                             <div class="">
-                                                <b style="font-size: 1.2rem">Halal Checker</b>
+                                                <b style="font-size: 1.2rem">Hasanah</b>
                                             </div>
                                             <div>Cek Makanan Halal MUI</div>
                                         </div>
@@ -97,9 +97,7 @@
                                 <a href="http://qurantafsir.yaumi.id/" target="_blank">
                                     <div class="d-flex align-items-center">
                                         <div class="p-2 rounded-lg mr-3" style="background-color: #F8F8F8">
-                                            <span class="material-icons" style="font-size: 2.5rem; color: #728363">
-                                                menu_book
-                                            </span>
+                                            <img style="width: 40px; height: 40px" src="{{asset('img/umum/qurantafsir-logo.svg')}}" alt="">
                                         </div>
                                         <div class="">
                                             <div class="">
