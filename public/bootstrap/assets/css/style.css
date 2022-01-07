@@ -37,10 +37,16 @@
 
 
 /* Upload Image Custom */
+<<<<<<< HEAD
 
 #upload {
     opacity: 0;
 }
+=======
+/* #upload {
+  opacity: 0;
+} */
+>>>>>>> f1a6a79634a2b704e6ecb1da829bd64579d8c20b
 
 #upload-label {
     position: absolute;
@@ -49,6 +55,7 @@
     transform: translateY(-50%);
 }
 
+<<<<<<< HEAD
 .image-area {
     border: 2px dashed rgba(255, 255, 255, 0.7);
     padding: 1rem;
@@ -74,6 +81,8 @@
 }
 
 
+=======
+>>>>>>> f1a6a79634a2b704e6ecb1da829bd64579d8c20b
 /* Upload Image Custom */
 
 

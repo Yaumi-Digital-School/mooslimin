@@ -11,8 +11,16 @@
       <div class="row mb-5" style="margin-bottom: 200px">
           <div class="col-lg-12 mb-5 pb-5">
               <div class="mb-5 pb-5" style="padding-top: 50px; height: 200px">
-                  <div class="gcse-search" data-gname="storesearch"></div>
+                <div onclick="wavesHide()">
+                    <div class="gcse-search" data-gname="storesearch"></div>
+                </div>  
               </div>
           </div>
       </div>
     </div>
+
+    <script type="application/javascript">
+    function wavesHide() {
+        $('#waves').hide();
+    }
+    </script>

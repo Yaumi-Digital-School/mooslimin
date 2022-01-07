@@ -42,6 +42,7 @@ Route::group(['middleware' => ['auth','checkRole:admin,user']], function(){
     // Forum
     Route::post('/forum/store', [ForumController::class, 'store'])->name('forum.store');
     Route::post('/forum/add/comment', [ForumController::class, 'add_comment'])->name('forum.add.comment');
+    Route::post('/forum/{id}/delete/comment', [ForumController::class, 'delete_comment'])->name('forum.delete.comment');
     Route::post('/forum/vote', [ForumController::class, 'forum_vote'])->name('forum.vote');
     Route::post('/forum/vote/comment', [ForumController::class, 'komentar_vote'])->name('komentar.vote');
 });
