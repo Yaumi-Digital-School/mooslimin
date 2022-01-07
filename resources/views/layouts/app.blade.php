@@ -77,7 +77,7 @@
                                 </a>
                             </li> --}}
                             <li>
-                                <a href="#" target="_blank">
+                                <a href="http://hasanah.yaumi.id/" target="_blank">
                                     <div class="d-flex align-items-center">
                                         <div class="p-2 rounded-lg mr-3" style="background-color: #F8F8F8">
                                             <span class="material-icons" style="font-size: 2.5rem; color: #F9CA0E">
@@ -94,7 +94,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="#" target="_blank">
+                                <a href="http://qurantafsir.yaumi.id/" target="_blank">
                                     <div class="d-flex align-items-center">
                                         <div class="p-2 rounded-lg mr-3" style="background-color: #F8F8F8">
                                             <span class="material-icons" style="font-size: 2.5rem; color: #728363">
