@@ -5,9 +5,7 @@ name: Deploy
 on:
   workflow_dispatch:
     branches:
-      - main
-      - dev
-      - ci-add-deployment
+      - master
       
 # Authenticate to the the server via ssh 
 # and run our deployment script 

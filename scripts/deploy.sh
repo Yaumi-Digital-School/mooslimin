@@ -9,6 +9,9 @@ echo "Deployment started ..."
 # Pull latest
 git pull origin master
 
+# Fix permission
+/var/www/.perm_fix.sh mooslimin
+
 # Install composer dependencies
 export COMPOSER_ALLOW_SUPERUSER=1
 composer dump-autoload
@@ -31,5 +34,9 @@ npm run prod
 
 # Exit maintenance mode
 php artisan up
+
+# post deployment clearance
+git restore public/
+git restore package-lock.json
 
 echo "Deployment finished!"
