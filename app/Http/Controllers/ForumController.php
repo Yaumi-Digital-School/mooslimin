@@ -61,6 +61,14 @@ class ForumController extends Controller
         
         return ModalStaticHelpers::redirect_success_with_title('Komentar','Komentar berhasil di buat');
     }
+
+    public function delete_comment($id){
+
+        $komentar = KomentarForum::find($id);
+        $komentar->delete($komentar);
+
+        return ModalStaticHelpers::redirect_success_with_title('Komentar','Komentar berhasil di hapus');
+    }
     
     public function forum_vote(Request $request){
         $forum = Forum::find($request->forum_id);

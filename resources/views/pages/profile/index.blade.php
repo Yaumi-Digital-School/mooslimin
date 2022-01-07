@@ -120,8 +120,45 @@
             <div class="d-flex align-items-center py-3">
               <img src="{{$komentar->user->get_img_avatar()}}" class="rounded-circle mr-3 d-flex align-self-baseline" style="width: 30px; height: 30px;" alt="">
               <div class="w-100">
-                <div class="">
-                  <span><b>{{$komentar->user->name}}</b><span style="color: gray"> . {{Carbon\Carbon::parse($komentar->created_at)->IsoFormat('d MMMM YYYY')}}</span></span>
+                <div class="d-flex justify-content-between">
+                  <div>
+                    <span><b>{{$komentar->user->name}}</b><span style="color: gray"> . {{Carbon\Carbon::parse($komentar->created_at)->IsoFormat('d MMMM YYYY')}}</span></span>
+                  </div>
+
+                  <div>
+                    @auth
+                      @if ($komentar->user->id == Auth::user()->id)
+                      <div class="dropdown">
+                        <div style="cursor: pointer" role="button" id="komentar" data-toggle="dropdown" aria-expanded="false">
+                          <img src="{{asset('img/umum/3point-horizontal.svg')}}" alt="">   
+                        </div>
+
+                        <div class="dropdown-menu" aria-labelledby="komentar">
+                          <a class="dropdown-item" href="#" data-toggle="modal" data-target="#komentarmodal{{$komentar->id}}">Hapus</a>
+                        </div>
+
+                        <!-- Modal Hapus Komentar -->
+                        <div class="modal fade" id="komentarmodal{{$komentar->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                              <div class="modal-body">
+                                <p class="font-weight-bold">Apakah Anda ingin menghapus komentar Anda?</p>
+                                <p style="color: #4F5E71">Tindakan ini tidak dapat diubah, setelah Anda menghapus komentar, komentar tersebut menghilang.</p>
+                                <div class="float-right">
+                                  <form action="{{route('forum.delete.comment',$komentar->id)}}" method="POST" enctype="multipart/form-data">
+                                    {{ csrf_field() }}
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                                    <button type="submit" class="btn btn-danger">Hapus</button>
+                                  </form>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      @endif                     
+                    @endauth
+                  </div>
                 </div>
                 <div class="">
                   <p>
@@ -144,9 +181,6 @@
                     <span style="color: gray">Dukung Naik . 
                       {{$komentar->vote()->where('type','upvote')->sum('value') != 0 ? $komentar->vote()->where('type','upvote')->sum('value') : ''}}
                     </span>
-                  </div>
-
-                  <div class="d-flex align-items-center">
                     <form action="{{route('komentar.vote')}}" method="POST" enctype="multipart/form-data">
                       {{ csrf_field() }}
                       <input type="hidden" id="komentar_forum_id" name="komentar_forum_id" value="{{$komentar->id}}">
@@ -168,8 +202,44 @@
               <div class="d-flex align-items-center py-3">
                 <img src="{{$komentar->user->get_img_avatar()}}" class="rounded-circle mr-3 d-flex align-self-baseline" style="width: 4%" alt="">
                 <div class="w-100">
-                  <div class="">
-                    <span><b>{{$komentar->user->name}}</b><span style="color: gray"> . {{Carbon\Carbon::parse($komentar->created_at)->IsoFormat('dddd MMMM YYYY, LT A')}}</span></span>
+                  <div class="d-flex justify-content-between">
+                    <div>
+                      <span><b>{{$komentar->user->name}}</b><span style="color: gray"> . {{Carbon\Carbon::parse($komentar->created_at)->IsoFormat('dddd MMMM YYYY, LT A')}}</span></span>
+                    </div>
+                    <div>
+                      @auth
+                        @if ($komentar->user->id == Auth::user()->id)
+                        <div class="dropdown">
+                          <div style="cursor: pointer" role="button" id="komentar" data-toggle="dropdown" aria-expanded="false">
+                            <img src="{{asset('img/umum/3point-horizontal.svg')}}" alt="">   
+                          </div>
+
+                          <div class="dropdown-menu" aria-labelledby="komentar">
+                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#komentarmodal{{$komentar->id}}">Hapus</a>
+                          </div>
+
+                          <!-- Modal Hapus Komentar -->
+                          <div class="modal fade" id="komentarmodal{{$komentar->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                              <div class="modal-content">
+                                <div class="modal-body">
+                                  <p class="font-weight-bold">Apakah Anda ingin menghapus komentar Anda?</p>
+                                  <p style="color: #4F5E71">Tindakan ini tidak dapat diubah, setelah Anda menghapus komentar, komentar tersebut menghilang.</p>
+                                  <div class="float-right">
+                                    <form action="{{route('forum.delete.comment',$komentar->id)}}" method="POST" enctype="multipart/form-data">
+                                      {{ csrf_field() }}
+                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                                      <button type="submit" class="btn btn-danger">Hapus</button>
+                                    </form>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        @endif                     
+                      @endauth
+                    </div>
                   </div>
                   <div class="">
                     <p>
@@ -192,9 +262,6 @@
                       <span style="color: gray">Dukung Naik . 
                         {{$komentar->vote()->where('type','upvote')->sum('value') != 0 ? $komentar->vote()->where('type','upvote')->sum('value') : ''}}
                       </span>
-                    </div>
-  
-                    <div class="d-flex align-items-center">
                       <form action="{{route('komentar.vote')}}" method="POST" enctype="multipart/form-data">
                         {{ csrf_field() }}
                         <input type="hidden" id="forum_id" name="komentar_forum_id" value="{{$komentar->id}}">

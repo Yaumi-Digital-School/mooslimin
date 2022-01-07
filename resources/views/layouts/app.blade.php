@@ -58,6 +58,9 @@
                                         </div>
                                     </div>
                                 </a>
+                                {{-- <div style="opacity: 0.5; position: absolute; top: 0; left: 0" class="m-4 p-4 bg-secondary d-flex align-self-center justify-content-center">
+                                    <p style="opacity: 1;" class="">Comming Soon</p>
+                                </div> --}}
                             </li>
                             <li>
                                 <a href="">
