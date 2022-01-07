@@ -69,6 +69,9 @@ class ForumController extends Controller
 
     public function delete($id){
         $forum = Forum::find($id);
+        if($forum->image != 'default.png'){
+            File::delete('img/forum/'.$forum->image);
+        }
         $forum->delete($forum);
 
         return ModalStaticHelpers::redirect_success_with_title('Postingan','Postingan berhasil di hapus');

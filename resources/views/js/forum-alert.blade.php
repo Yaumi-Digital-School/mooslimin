@@ -47,7 +47,7 @@
   var error_has_profile_mesg = "{{ $errors->first('profile') }}";
   if(error_has_name || error_has_profile){
     Swal.fire({
-      title: 'Postingan',
+      title: 'Profile',
       text: error_has_name_mesg +' '+ error_has_profile_mesg,
       icon: 'warning', 
       timer: 5000,

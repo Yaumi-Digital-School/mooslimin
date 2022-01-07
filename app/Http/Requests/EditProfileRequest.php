@@ -24,7 +24,7 @@ class EditProfileRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'                  => 'required|min:3|max:500',
+            'name'                  => 'required|min:3|max:50',
             'profile'                 => 'mimes:jpeg,jpg,png,gif|max:2048',
         ];
     }
@@ -35,8 +35,8 @@ class EditProfileRequest extends FormRequest
             'profile.mimes'              => '[Gambar hanya mendukung format : jpeg, jpg, png, gif]',
             'profile.max'                => '[Ukuran gambar maksimal 2mb]',
             'name.required'            => '[Nama wajib diisi]',
-            'name.min'                 => '[Minimal 10 karakter]',
-            'name.max'                 => '[Maximal 1000 karakter]',
+            'name.min'                 => '[Nama Minimal 3 karakter]',
+            'name.max'                 => '[Nama Maximal 50 karakter]',
         ];
     }
 }

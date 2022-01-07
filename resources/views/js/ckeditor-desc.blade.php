@@ -1,5 +1,5 @@
 <script>
-  $('#exampleModal').on('shown.bs.modal', function() {
+  $('.modal').on('shown.bs.modal', function() {
       $(document).off('focusin.modal');
   });
 

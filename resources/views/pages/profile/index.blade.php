@@ -425,7 +425,7 @@
           </div>
           <div class="modal-body">
             <div class="d-flex justify-content-center align-items-center">
-              <img src="{{Auth::user()->get_img_avatar()}}" class="rounded-circle" style="width: 14%" alt="">
+              <img src="{{Auth::user()->get_img_avatar()}}" class="rounded-circle" style="width: 100px; height: 100px;" alt="">
             </div>
             <div class="mt-3 text-center">Edit Profile</div>
 

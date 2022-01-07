@@ -66,8 +66,8 @@
                                     class="w-full text-base  px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600" 
                                     required/>
 
-                                @if($errors->has('email'))
-                                    <span class="text-red-500">{{$errors->first('email')}}</span>    
+                                @if($errors->has('password'))
+                                    <span class="text-red-500">{{$errors->first('password')}}</span>    
                                 @endif
                             </div>
 

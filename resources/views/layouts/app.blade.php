@@ -42,7 +42,7 @@
                     <li class="{{ request()->is('/') ? 'active' : '' }}"><a href="{{ route('home') }}">Home</a></li>
                     <li class="drop-down "><a href="">Layanan</a>
                         <ul>
-                            <li class="">
+                            {{-- <li class="">
                                 <a href="">
                                     <div class="d-flex align-items-center">
                                         <div class="p-2 rounded-lg mr-3" style="background-color: #F8F8F8">
@@ -58,11 +58,8 @@
                                         </div>
                                     </div>
                                 </a>
-                                {{-- <div style="opacity: 0.5; position: absolute; top: 0; left: 0" class="m-4 p-4 bg-secondary d-flex align-self-center justify-content-center">
-                                    <p style="opacity: 1;" class="">Comming Soon</p>
-                                </div> --}}
-                            </li>
-                            <li>
+                            </li> --}}
+                            {{-- <li>
                                 <a href="">
                                     <div class="d-flex align-items-center">
                                         <div class="p-2 rounded-lg mr-3" style="background-color: #F8F8F8">
@@ -78,9 +75,9 @@
                                         </div>
                                     </div>
                                 </a>
-                            </li>
+                            </li> --}}
                             <li>
-                                <a href="#">
+                                <a href="#" target="_blank">
                                     <div class="d-flex align-items-center">
                                         <div class="p-2 rounded-lg mr-3" style="background-color: #F8F8F8">
                                             <span class="material-icons" style="font-size: 2.5rem; color: #F9CA0E">
@@ -97,10 +94,10 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="#">
+                                <a href="#" target="_blank">
                                     <div class="d-flex align-items-center">
                                         <div class="p-2 rounded-lg mr-3" style="background-color: #F8F8F8">
-                                            <span class="material-icons" style="font-size: 2.5rem; color: #1381F7">
+                                            <span class="material-icons" style="font-size: 2.5rem; color: #728363">
                                                 menu_book
                                             </span>
                                         </div>
@@ -109,6 +106,40 @@
                                                 <b style="font-size: 1.2rem">Qur'an Tafsir</b>
                                             </div>
                                             <div>Qur'an 30 Juz & Tafsirnya</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://kuislam.yaumi.id/" target="_blank">
+                                    <div class="d-flex align-items-center">
+                                        <div class="p-2 rounded-lg mr-3" style="background-color: #F8F8F8">
+                                            <span class="material-icons" style="font-size: 2.5rem; color: #6DAF2B">
+                                                quiz
+                                            </span>
+                                        </div>
+                                        <div class="">
+                                            <div class="">
+                                                <b style="font-size: 1.2rem">Kuislam</b>
+                                            </div>
+                                            <div>Mini Games Islamic Quiz</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://istiqomah.yaumi.id/" target="_blank">
+                                    <div class="d-flex align-items-center">
+                                        <div class="p-2 rounded-lg mr-3" style="background-color: #F8F8F8">
+                                            <span class="material-icons" style="font-size: 2.5rem; color: #00A7A0">
+                                                monitor
+                                            </span>
+                                        </div>
+                                        <div class="">
+                                            <div class="">
+                                                <b style="font-size: 1.2rem">Istiqomah</b>
+                                            </div>
+                                            <div>Sahabat hijrahmu</div>
                                         </div>
                                     </div>
                                 </a>
@@ -136,7 +167,7 @@
                                     </div>
                                 </a>
                             </li>
-                            <li>
+                            {{-- <li>
                                 <a href="#">
                                     <div class="d-flex align-items-center">
                                         <div class="p-2 rounded-lg mr-3" style="background-color: #F8F8F8">
@@ -152,7 +183,7 @@
                                         </div>
                                     </div>
                                 </a>
-                            </li>
+                            </li> --}}
                         </ul>
                     </li>
 

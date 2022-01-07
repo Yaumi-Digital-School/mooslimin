@@ -24,7 +24,7 @@ class CreateForumRequest extends FormRequest
     public function rules()
     {
         return [
-            'desc'                  => 'required|min:10|max:1000',
+            'desc'                  => 'required|min:17|max:1007',
             'image'                 => 'mimes:jpeg,jpg,png,gif|max:2048',
         ];
     }
@@ -35,8 +35,8 @@ class CreateForumRequest extends FormRequest
             'image.mimes'              => '[Gambar hanya mendukung format : jpeg, jpg, png, gif]',
             'image.max'                => '[Ukuran gambar maksimal 2mb]',
             'desc.required'            => '[Postingan wajib diisi]',
-            'desc.min'                 => '[Minimal 10 karakter]',
-            'desc.max'                 => '[Maximal 1000 karakter]',
+            'desc.min'                 => '[Postingan Minimal 10 karakter]',
+            'desc.max'                 => '[Postingan Maximal 1000 karakter]',
         ];
     }
 }
