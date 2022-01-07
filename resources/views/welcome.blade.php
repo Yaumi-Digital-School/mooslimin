@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title')
-    Muslim Tool
+    Mooslim.in
 @endsection
 @section('content')
     @include('pages.asset.searchengineapigoogle')
