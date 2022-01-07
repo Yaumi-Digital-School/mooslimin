@@ -10,7 +10,7 @@ echo "Deployment started ..."
 git pull origin master
 
 # Fix permission
-/var/www/.perm_fix.sh mooslimin
+/var/www/perm_fix.sh mooslimin
 
 # Install composer dependencies
 export COMPOSER_ALLOW_SUPERUSER=1
